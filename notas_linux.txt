@@ -1,0 +1,197 @@
+Comandos:
+
+para ver la ruta de una carpeta en debian poner control + l+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ls lista los archivos de una carpeta
+cd entra a una carpeta
+pwd te muestra en que carpetaestas  
+ls -l mostrar archivos de forma detallada en forma de lista
+ls -lh nos indica el tamaño de los archivos 
+ls -lS para ordenar alfabeticamente de forma descendiente
+ls -lSh para ordenar alfabeticamente y mostrar el tamaño del archivo
+ls -lShr para ordenar alfabeticamente de z a A mostrando el peso del archivo
+ls -lt ordenara los archivos dependiendo la modificacion de los mismos 
+ls -a muestra archivos ocultos
+cd .. vamos al directorio anterior
+mkdir creo carpetas 
+Si quiero usar espacio en un nombre deberé ponerlo entre comillas o con un carácter de escape (\)
+++++++++++++++++++++++++++++++++++++++++
+Ruta relativa y absoluta
+basicamente la ruta absoluta es ir a un lugar en especifico de un jalón 
+para hacer una ruta absoluta empezamos con unabarra invertida / y luego vamos escribiendo
+toda la ruta en un solo comando para llegar a nuestro destino ejemplo: cd/home/alumno/ficheros/ 
+ahi llegariamos a ficheros en un solo comando y eso es una ruta absoluta.
+La ruta relativa es el llegar a un luar en especifico por pasos (por varios comandos) 
+ejemplo: cd home
+luego cd  alumno
+luego cd ficheros
+eso es una ruta relativa 
+++++++++++++++++++++++++++++++++++++++++++
+*history  busca tosdos los comandos que has usado y los enumera, luego usando " !numero_de_comando " puedes seleccionar el comando que quieres usar 
+*control + r aparece un buscador de comandos, le ponemos lasletras que creemos que lleva algun comando que hayamos escrito antes y nos ayuda a buscarlo  
+*para crear un arbol de carpeatas usamos mkdir  ponemos mkdir carpeta_existente/nombre_de_carpeta_a_crear 
+*si usamos mkdir y ponemos algun elemento no existente en nuestro arbolde carpetas podemos usar -p despues de mkdir y automaticamente se crea, ejemplo:
+mkdir -p carpeta_padre_inexistente/carpeta_a_crear
+*rm -r con esta sentencia podemos borrar un directorio  ejemplo rm -r carpeta_a_borrar
+*rm borra archivos 
+*touch nombre_de_archivo.txt con esto creamos un archivo (fichero.txt) dentro de una carpeta (directorio) 
+*mv mueve un archivo de un destino a otro y para cambiar el nombre de un archivo (fichero) se toma
+el lugarde origen por default (por que ya estas en el otrigen) y solo tienes que escoger el archivo que vas a mover
+y el lugar al que lo vas a llevar, puedes usarrutas relativas o absolutas
+ejemplo de ruta relativa:   mv nombre1.txt ..    aqu movemos el archivo a una carpeta anterior 
+ejemplo de una ruta absoluta: mv nombre1.txt /home/alumno/ficheros/documentos     aqu movimos un documento a documentos  
+*mv tambien sirve para renombrar un rchivo por ejemplo:   mv nombre1.txt  nombre2.txt el nombre 2 seria el nuevo nombre y el 1 el viejo
+*cat muestra la informacion de texto de un archivo
+
+echo "caracteres dentro de un fichero(archivo)  " esto nos sirve para crer contenido dentro de un archivo en este caso una linea de caracteres
+echo "conteido" > nombre_de_archivo_a_crear       crea un archivo y le agrega el contenido establecido en las comillas 
+El carácter ~ hace referencia al directorio personal del que ejecuta la orden
+El comando ls lista el contenido de un directorio. Opciones comunes que modifican cómo se mostrará la información: 
+-l lista con detalle, -h muestra el tamaño más legible,
+-a muestra los ocultos, -S ordena por tamaño, -t ordena por fecha,
+-r invierte el criterio de ordenación
+
+Para indicar dónde se encuentra un elemento del sistema de ficheros (un archivo o un directorio), utilizo rutas. Éstas pueden ser absolutas
+(indico todos los directorios que tengo que seguir desde la raíz del sistema) o relativas (indico el camino desde el directorio donde ejecuto la orden).
+
+Las rutas absolutas siempre empiezan por una barra / (que indica la raíz)
+
+Si utilizo .. en una ruta estoy haciendo referencia al directorio padre. Un único punto indica el directorio actual
+
+Linux distingue entre mayúsculas y minúsculas
+
+Si quiero usar espacio en un nombre deberé ponerlo entre comillas o con un carácter de escape (\)
+
+Usando los cursores arriba y abajo aparecerán las últimas ordenes que he ejecutado
+
+Puedo ayudarme del tabulador para terminar de escribir una ruta
+
+Con Control+R puedo buscar en el historial de instrucciones
+
+El comando history  muestra el historial de instrucciones y puedo ejecutarlas usando !numero_instrucción 
+
+El comando mkdir sirve para crear directorios
+
+El comando rm borra ficheros, y con -r directorios
+
+touch crea ficheros vacíos
+
+mv mueve elementos o cambia su nombre
+
+du muestra el espacio que ocupa un fichero o todo el contenido de un directorio
+
+df nos informa del espacio libre y ocupad de las particiones del sistema
+
+ln crea enlaces, débiles o fuertes.
+
+
+--------------------------------------------------------------------------
+comando sobre sistemas de fiheros 
+
+• COMANDOS SOBRE EL USO DE DISCO 
+‣ df (disk free): este comando nos da información sobre las particiones del sistema: 
+tamaño total, usado y libre. Podemos usarlo sin opciones ni argumentos, pero la 
+opción -h nos ayudará a entender mejor las cifras que se nos muestran.
+Si le pasamos como parámetro cualquier directorio nos dará la información de la 
+partición donde se encuentre ese directorio. 
+VARIOS
+• EJEMPLO:
+‣ df -h /home/ 
+Muestra en formato "humano" información sobre el espacio de la partición donde se 
+encuentre /home/
+
+• COMANDOS SOBRE EL USO DE DISCO 
+‣ du (disk usage): muestra el espacio de disco ocupado por un fichero o por un 
+directorio. Si le pasamos un directorio mostrará recursivamente el tamaño de 
+todos los subdirectorios
+Opciones: 
+✓ -h : muestra el tamaño en KB, MB, etc.. 
+✓ -s : si le pasamos un directorio muestra únicamente el total de lo que ocupa 
+todo su contenido 
+VARIOS
+• EJEMPLO:
+‣ du -hs /* 
+Muestra en formato "humano" el total de lo que ocupan todos los elementos de la raíz del 
+sistema
+
+
+
+
+• ENLACES 
+‣ ln: crea un enlace a un elemento del sistema de ficheros. Sin opciones creamos 
+un enlace duro y con -s un enlace simbólico (o blando)
+Un enlace duro es un puntero a la información de disco, mientras que uno 
+blando apunta a la ruta 
+A los directorios siempre se harán enlaces simbólicos
+VARIOS
+• EJEMPLOS:
+‣ ln /etc/apt/sources.list ~/repos 
+Crea un enlace fuerte llamado repos que tendrá la misma información que el sources.list 
+‣ ln -s /var/cache/apt/archives/ /paquetes/ 
+Crea un enlace simbólico llamado paquetes, que irá a /var/cache/apt/archives/
+
+
+cp  sirve para copiar ficheros  ejemplo:
+cp  archivo_a_copiar.txt  archivo_que_recibira.txt otro ejemplo cp  archivo_a_copiar.txt   directorio(carpeta que recibira) 
+si queremos copiar una carpeta dentro de otra tenemos que usar el comando agregando un -r que indica que copiaremos un directorio (crearemos si no existe)
+ejemplo  cp -r carpeta_a_copiar  carpeta_destino
+    se pueden copiar varios ficheros al mismo tiempo siendo el ultimo archivo el destino al que seran dirigidos 
+    ejemplo:  cp  archivo_a_copiar.txt  archivo_a_copiar2.txt directorio(carpeta que recibira)
+
+
+-comodin:  "*" usar asterisco nos sirve para seleccionar archivos en una carpeta, nos sirve para filtrar archivos y extenciones detipo de archivo
+    ejemplo podemos seleccionararchivos de un tolo tipo de extencion com jpg poniendo *.jpg    y si por ejemplo queremos seleccionar 
+    un ripo especifico de archivos que empiecen con el mismo nombre peroque terminen difrente por ejemplo: oficio_1.txt, oficio_2.txt etc
+    ponemos oficio*    y seleccionaremos a todos los archivos de ombre oficio 
+
+si queremos archivos que contengan la una letra en especifico como aletra "a" ponemos *a*  y los buscara
+si queremos buscar un archivo que comience con la letra "t" ponemos t*   y lo buscamos     
+ 
+
+-comodin: "?" este coodin se usa cuando queremos especificar y filtrar el numero de caracteres de un archivo, por ejemplo:
+si tenemos los archivos:
+oficio_1.txt
+oficio_3.txt
+oficio_34.txt
+oficio_123.txt
+oficio_2.txt
+            y ponemos:
+ls-l oficio_?          aqui decimos que nos busque un archivo llamado oficio_    y que tenga un solo caracter antes de llegar a su extencion 
+nos seleccionaria los archivos oficio_1.txt oficio_3.txt y oficio_2.txt
+si pondemos  
+ls-l oficio_??       aqui decimos que nos busque un archivo llamado oficio_   y que tenga dos caracteres antes de llegar a su extencion 
+nosseleccionaria el arhivo oficio_34.txt
+
+-se pueden mezclar los dos comodines sin problemas por ejemplo :
+ls -l oficio_??.*      aqui decimos que queremos un archivo llamado oficio  que contega dos caracteres antes de la extencion y que luego nos
+ seleccione cualquier extencion   
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+usamos la orden "su" si no especificamos elusuario nos redirigira directamente al usuario root. en ubuntu se suele utilizar "sudo" 
+un usuario siempre pertenece a u grupode forma principal pero puede pertenecer a otros grupos de forma secundaria 
+al estar en root ypresionar ls -l nos desplegara una lista en donde la primer columna de nombres es del propietario del fichero y 
+la segunda del grupo 
+* exit uso este comando para salir de usuario root   
+* whoami este comando te dice que usuario eres
+* groups este comando te dira a que grupo perteneces  
+* id la orden id te da informacion de un usuario, grupo principal y tus otros grupos 
+* adduser estecomando lo utilizamos para crear un usuario cuando estamos adentro de unusuario root ejemplo: adduser ana  y creamos el usuario ana 
+le creamos una contraseña y la repetimos, no tenemos por que ir rellenando odoslos dtos requeridos y vamos dando enter hasta terminar 
+* addgroup   podemos crear  grupos con este comando ejemplo: addgroup alumnos      y crearemos el grupo alumnoslo podremos utilizar como grupo 
+principal o secundario
+* usermod -g modifica el grupo principal de un usuario ejemplo: usermod -g alumnos ana      con esto estariamos diciendo que el grupo 
+principal de ana seria alumnos lo podemos verificar con id 
+*chown    podemos modificar el usuario y el grupode de un sistema de ficheros  (tenemos que ser uuarios root) por ejemplo si tenemoc un fichero 
+(archivo) que es propiedad de un usuario en especifico, por ejemplo ana y con un grupo llamado alumnos  y quisieramos cambiar su usuario y
+su grupo usariamos el comando chown usuario_x_el_que_cambiamos:grupor_x_el_que_cambiamos noombre_del_fichero   ejemplo si le perteneciera al 
+usuario ana con un grupo llemado users un archivo llamado  hola.txt y lo queremos cambiar a unusuario llamado tux y a un grupo llamado alumnos
+ponemos: chown tux:alumnos hola.txt
+esto tambien se puede hacer de forma independiente osea cambiando solo un usuario o solo el grupo. para cambiar solo el usuario se hace 
+chown nuevo_propietario fichero.txt por ejemplo sicambiaramos de usuario ana a tux: chown tux hola.txt
+-para cambiar el grupo solo se ponen dos puntos antes del nuevo ombre del grupo por ejemplo: chown :alumnos hola.txt
+
+*passwd usamos este comando para cambiar la contrasea de un usuario: passwd usuario        con esto cambiamos la contraseña del usuario
+seleccionado en caso de no especificar un usuario se cambiaria por default la contraseña de usuario que esta poniendo este comando 
