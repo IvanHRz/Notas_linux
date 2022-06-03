@@ -1,49 +1,71 @@
+00++++++++++++++++++++++++++++++++usuarios+++++++++++++++++++++++++++++++++++++++++++++++
+ubuntu se usa la oreden sudo pero en debian se usa la orden "su", si no especificamos el usuario al que queremos cambiar 
+por defecto cambiamos al usuario root del sistema y nos pedira contraseña 
+ponermos exit para salir del usuario root
++++++++++++++++++++++++++++++++++++instalar comandos+++++++++++++++++++++++++++++++++++++++++++++++++
+ponemos: sudo apt install comando_a_instalar 
+++++++++++++++++++++++++++++++++++++vincular carpetas+++++++++++++++++++++++++++++++++++++++++++++++++++
+sudo mount -t vboxsf Linux_Debian /home/ivan/Windows 
+
+con ese comando mandamos a llamar a la carpeta que queramos en este caso Linux_Debian y la colocamos en la carpeta Windows 
+++++++++++++++++++++++++++++++++extraer archivos .tar+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+tar -xf archive.tar.gz
+++++++++++++++++++++++++++++++++extraer archivo .rar+++++++++++++++++++++++++++++++++++++++++++++++
+unrar x nobre_del_rar. rar
+unrar x nombre_del_rar. rar ruta donde lo queramos descomprimir
+sss
 Comandos:
 
 para ver la ruta de una carpeta en debian poner control + l+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ls lista los archivos de una carpeta
 cd entra a una carpeta
-pwd te muestra en que carpetaestas  
+pwd te muestra en que carpeta estas  
 ls -l mostrar archivos de forma detallada en forma de lista
 ls -lh nos indica el tamaño de los archivos 
 ls -lS para ordenar alfabeticamente de forma descendiente
-ls -lSh para ordenar alfabeticamente y mostrar el tamaño del archivo
-ls -lShr para ordenar alfabeticamente de z a A mostrando el peso del archivo
+ls -lr ordena de orden inverso los archivos 
 ls -lt ordenara los archivos dependiendo la modificacion de los mismos 
 ls -a muestra archivos ocultos
+ls -i muestra el indice de un archivo
+ls -lSh para ordenar alfabeticamente y mostrar el tamaño del archivo
+ls -lShr para ordenar alfabeticamente de z a A mostrando el peso del archivo
 cd .. vamos al directorio anterior
 mkdir creo carpetas 
 Si quiero usar espacio en un nombre deberé ponerlo entre comillas o con un carácter de escape (\)
+nano podemos editar el conntenido de un archivo txt
+man podemos ver informacion de algun comando
+Direccion de ruta actual ".", direccion de ruta anterior ".."
 ++++++++++++++++++++++++++++++++++++++++
 Ruta relativa y absoluta
 basicamente la ruta absoluta es ir a un lugar en especifico de un jalón 
 para hacer una ruta absoluta empezamos con unabarra invertida / y luego vamos escribiendo
 toda la ruta en un solo comando para llegar a nuestro destino ejemplo: cd/home/alumno/ficheros/ 
 ahi llegariamos a ficheros en un solo comando y eso es una ruta absoluta.
-La ruta relativa es el llegar a un luar en especifico por pasos (por varios comandos) 
+La ruta relativa es el llegar a un lugar en especifico por pasos (por varios comandos) 
 ejemplo: cd home
 luego cd  alumno
 luego cd ficheros
 eso es una ruta relativa 
 ++++++++++++++++++++++++++++++++++++++++++
 *history  busca tosdos los comandos que has usado y los enumera, luego usando " !numero_de_comando " puedes seleccionar el comando que quieres usar 
-*control + r aparece un buscador de comandos, le ponemos lasletras que creemos que lleva algun comando que hayamos escrito antes y nos ayuda a buscarlo  
+*control + r aparece un buscador de comandos, le ponemos las letras que creemos que lleva algun comando que hayamos escrito antes y nos ayuda a buscarlo  
 *para crear un arbol de carpeatas usamos mkdir  ponemos mkdir carpeta_existente/nombre_de_carpeta_a_crear 
-*si usamos mkdir y ponemos algun elemento no existente en nuestro arbolde carpetas podemos usar -p despues de mkdir y automaticamente se crea, ejemplo:
+*si usamos mkdir y ponemos algun elemento no existente en nuestro arbol de carpetas podemos usar -p despues de mkdir y automaticamente se crea, ejemplo:
 mkdir -p carpeta_padre_inexistente/carpeta_a_crear
 *rm -r con esta sentencia podemos borrar un directorio  ejemplo rm -r carpeta_a_borrar
 *rm borra archivos 
 *touch nombre_de_archivo.txt con esto creamos un archivo (fichero.txt) dentro de una carpeta (directorio) 
 *mv mueve un archivo de un destino a otro y para cambiar el nombre de un archivo (fichero) se toma
-el lugarde origen por default (por que ya estas en el otrigen) y solo tienes que escoger el archivo que vas a mover
+el lugar de origen por default (por que ya estas en el otrigen) y solo tienes que escoger el archivo que vas a mover
 y el lugar al que lo vas a llevar, puedes usarrutas relativas o absolutas
-ejemplo de ruta relativa:   mv nombre1.txt ..    aqu movemos el archivo a una carpeta anterior 
-ejemplo de una ruta absoluta: mv nombre1.txt /home/alumno/ficheros/documentos     aqu movimos un documento a documentos  
+ejemplo de ruta relativa:   mv nombre1.txt ..    aqui movemos el archivo a una carpeta anterior 
+ejemplo de una ruta absoluta: mv nombre1.txt /home/alumno/ficheros/documentos     aqui movimos un documento a documentos  
 *mv tambien sirve para renombrar un rchivo por ejemplo:   mv nombre1.txt  nombre2.txt el nombre 2 seria el nuevo nombre y el 1 el viejo
 *cat muestra la informacion de texto de un archivo
 
-echo "caracteres dentro de un fichero(archivo)  " esto nos sirve para crer contenido dentro de un archivo en este caso una linea de caracteres
-echo "conteido" > nombre_de_archivo_a_crear       crea un archivo y le agrega el contenido establecido en las comillas 
+echo "caracteres dentro de un fichero(archivo)  " esto nos sirve para crear contenido dentro de un archivo en este caso una linea de caracteres
+echo "conteido" > nombre_de_archivo_a_crear       crea un archivo y le agrega el contenido establecido en las comillas
+echo teto con spacios >> archivo_en donde_se_escribira.txt 
 El carácter ~ hace referencia al directorio personal del que ejecuta la orden
 El comando ls lista el contenido de un directorio. Opciones comunes que modifican cómo se mostrará la información: 
 -l lista con detalle, -h muestra el tamaño más legible,
@@ -51,8 +73,9 @@ El comando ls lista el contenido de un directorio. Opciones comunes que modifica
 -r invierte el criterio de ordenación
 
 Para indicar dónde se encuentra un elemento del sistema de ficheros (un archivo o un directorio), utilizo rutas. Éstas pueden ser absolutas
-(indico todos los directorios que tengo que seguir desde la raíz del sistema) o relativas (indico el camino desde el directorio donde ejecuto la orden).
-
+(indico todos los directorios que tengo que seguir desde la raíz del sistema) o relativas (indico el camino desde el directorio donde ejecuto
+ la orden).
+--------------------------------------------------------------------------------------------------------------
 Las rutas absolutas siempre empiezan por una barra / (que indica la raíz)
 
 Si utilizo .. en una ruta estoy haciendo referencia al directorio padre. Un único punto indica el directorio actual
@@ -79,7 +102,7 @@ mv mueve elementos o cambia su nombre
 
 du muestra el espacio que ocupa un fichero o todo el contenido de un directorio
 
-df nos informa del espacio libre y ocupad de las particiones del sistema
+df nos informa del espacio libre y ocupado de las particiones del sistema
 
 ln crea enlaces, débiles o fuertes.
 
@@ -117,6 +140,15 @@ sistema
 
 
 • ENLACES 
+en linux cada fichero y carpeta tiene asignado un numero inodo (numero de identificcion o indice)se amacenan atributos, permisos , propietario,
+localizacion en el disco duro, un en lace duro apunta al lugar en el disco duro en donde esta el contenido del archivo y el simbolico apunta al
+ archivo en si(ruta). Un enlace simbolico es como los accesos directos en windows que estan en el escritorio, en realidad esos accesos o contienen
+el programa nin el ejecutable del programa pero nos facilitan la vida teniendolos en el escritorio a tener todos los archivos o elejecutable
+ de un programa ese acceso directo apunta a la rua en donde esta la carpet del programa en nuestro disco y luego el ejecutable ejecuta el programa
+los permisos de los enlaces simbolicos empiezan con "l". si creamos un enlace duro y despues eliminamos el archivo original de donde hicimos el
+ enlace el contenido de este estara intacto ya que tambien estará en el uevo archivo, sin embargo si eliminamos el archivo original al cual enlazamos
+con un enlace  blando nos generará un error ya que ya no podremos accesar aese contenido por que no estabamos apuntando al contenido del archivo sino
+ a su nombre (a su ruta), podemos crear un archivo con el mismo nombre y automaticamente se enlazara a el  
 ‣ ln: crea un enlace a un elemento del sistema de ficheros. Sin opciones creamos 
 un enlace duro y con -s un enlace simbólico (o blando)
 Un enlace duro es un puntero a la información de disco, mientras que uno 
@@ -125,15 +157,18 @@ A los directorios siempre se harán enlaces simbólicos
 VARIOS
 • EJEMPLOS:
 ‣ ln /etc/apt/sources.list ~/repos 
+aqui /etc/apt/sources.list sera la ruta absoluta en donde se encuentra el contenido de nuestro archivo y   ~/repos  sera el enlace duro
 Crea un enlace fuerte llamado repos que tendrá la misma información que el sources.list 
 ‣ ln -s /var/cache/apt/archives/ /paquetes/ 
+aqui /var/cache/apt/archives/ es el archivo o directorio al que nos enlazaremos con un enlace blando llamado /paquetes/ 
 Crea un enlace simbólico llamado paquetes, que irá a /var/cache/apt/archives/
 
 
 cp  sirve para copiar ficheros  ejemplo:
-cp  archivo_a_copiar.txt  archivo_que_recibira.txt otro ejemplo cp  archivo_a_copiar.txt   directorio(carpeta que recibira) 
-si queremos copiar una carpeta dentro de otra tenemos que usar el comando agregando un -r que indica que copiaremos un directorio (crearemos si no existe)
-ejemplo  cp -r carpeta_a_copiar  carpeta_destino
+cp  archivo_a_copiar.txt  archivo_que_recibira.txt si el archivo que recibira no existe lo crera, otro ejemplo
+ cp  archivo_a_copiar.txt   directorio(carpeta que recibira) 
+si queremos copiar una carpeta dentro de otra tenemos que usar el comando agregando un -r que indica que copiaremos un directorio 
+(crearemos si no existe) ejemplo  cp -r carpeta_a_copiar  carpeta_destino
     se pueden copiar varios ficheros al mismo tiempo siendo el ultimo archivo el destino al que seran dirigidos 
     ejemplo:  cp  archivo_a_copiar.txt  archivo_a_copiar2.txt directorio(carpeta que recibira)
 
@@ -166,10 +201,7 @@ ls -l oficio_??.*      aqui decimos que queremos un archivo llamado oficio  que 
  seleccione cualquier extencion   
 
 
-
-
-
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++Permisos en el sistema++++++++++++++++++++++++++
 usamos la orden "su" si no especificamos elusuario nos redirigira directamente al usuario root. en ubuntu se suele utilizar "sudo" 
 un usuario siempre pertenece a u grupode forma principal pero puede pertenecer a otros grupos de forma secundaria 
 al estar en root ypresionar ls -l nos desplegara una lista en donde la primer columna de nombres es del propietario del fichero y 
@@ -195,3 +227,190 @@ chown nuevo_propietario fichero.txt por ejemplo sicambiaramos de usuario ana a t
 
 *passwd usamos este comando para cambiar la contrasea de un usuario: passwd usuario        con esto cambiamos la contraseña del usuario
 seleccionado en caso de no especificar un usuario se cambiaria por default la contraseña de usuario que esta poniendo este comando 
+estsosse dividen en 4 tipos
+
+tipo de fichero=1, usuario=2, grupo=3 y otros=4 
+
+1  2   3   4
+- rw- r-- r--
+- rwx rwx rwx
+d rwx r-x r-x
+
+
+r significa que tenemos concedido el permiso de lectura
+w significa que tenemos concedido el permiso de escritura
+x significa que podemos ejecutar ese fichero
+los permisos siempre se dividen en 3 partes, la primera nos dice los permisos que tiene el usuari, el sgundo los ue tiene el grupo
+y por ultimo el resto de usuarios . El orden de importancia y de ordenacion siempre sera r primero luego w y al ultimo x . ejemplo:
+-rw-rw-rw- aqui tenemos los tres bloques con dos permisos par cada bloque 
+
+
+*directorios:dependen con que caracter empiecen los permisos del sistema, indicara que tipo de sistema de ficheros son , si empiezan con
+ una "d" significa que es un directorio, si tiene una "l"es unenlace  y si tiene un guion "-" significa que es un fichero regular    
+r en un directorio es listar, eso significa que se desplegaran los archivos del folder 
+ejemplo: dr-xr-xr-x      en estos permisos estamos trabajando con un directorio por que tiene 4 grupos de carcateres y empieza con la letra d
+                         y nos podra mostrar la lista de archivos al poner el comando ls -l ya que tiene una "r" al lado de la "d" 
+si entramos a un directorio en donde no tiene el permiso "W" que seria el de poder crear o borrar un documento, entonces no podriamos
+afectar a ningun documento dentro de el (borrar o crear) pero si podriamos editar el contenido de losdocumentos si estos
+tienen esos permisos. X significa que podemos entrar y ver los archivos de una carpeta 
+r significa listar elementosde un directorio
+w significa el poder crear o eliminar archivos en un directorio
+x significa el poder entrar al directorio   
+
+*chmod otorgar o quitar permisos, estos permisos se daran a los 3 grupos usuarios, grupos y demás
+primera forma:
+ ESTRUCTURA: chmod +letra_de_permiso_a_otorgar archivo.txt          ejemplo:     chmod +r hola.txt
+       aqui le otorgamos el permiso de lectura al archivo hola.txt 
+para quitar permiso la estructura es: chmod -letra_de_permiso_a_otorgar archivo.txt                 ejemplo:     chmod -r hola.txt
+aqui le quitamos el permiso de lectura a hola.txt  
+
+
+si queremos quitar especificamente un permiso los tres grupos se especificaran con la letra u-g-o   siendo "a" para todos, "u" el del propietario, "g" los grupos
+y "o" los demás estructura  chmod u+letra_de_permiso_a_otorgar archivo.txt          ejemplo:     chmod u+r hola.txt
+aqui le dimos el permiso de lectura solo al promietariopodriamos dar o quitr varios permisos especificos a la vez ejemplo: chmod g+r,o+r hola.txt
+aqui le dimos permiso de lecturaa los grupos y a los otros separndo con una coma.
+
+segunda forma:
+otra forma de dar permisos especificos es igualando el usuario especifico al permiso que le otorgaremos pero quedaran descartados cualquier otro
+permiso que no especifiquemos.
+ejemplo: chmod u=r,g=w,o=r hola.txt
+esto nos dira que el usuario propietario solo tendra el permiso derelctura y todos los demas permisos estan descartados y asi con los demás 
+si quieremos quitarle los permisos a todos ponemos: chmod u=,g=,o= hola.txt    
+si quieremos darle los permisos a todos ponemos: chmod u=rwx,g=rwx,o=rwx hola.txt 
+
+
+tercera forma: se expresa en binario de cierta manera es mas facil de entender , recordar siempre que 2^0=1,
+               2^1=2, 2^2=4 en donde r=2^2=4, w= 2^1=2 y x=2^0=1. Por lo tanto si vemos:
+               R|W|X| R|W|X| R|W|X|
+               1|1|1| 0|0|1| 1|1|0|
+                 7       1     6    
+               con 716 le estariamos diciendo que el usuario tiene todos los permisos, que el grupo tiene solo el permiso de ejeciucion y que los otros
+               solotiene permiso de lectura y escritura. podriamos poner 777 y dar todos los permisos a todos los apartados
+o podriamos poner  000 y quitar todos los permisos de todos los apartados.
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++Busquedas en los sistemas de ficheros ++++++++++++++++++++++++++
+*find  con este comando podemos hacer una busqueda en una ruta determinada y con especificos parametros de busqueda
+o con tipos de parametros(directorios,ficheros,enlaces simbolicos,dispositivos de bloque dispositivos de caracter ó sockets). 
+la estructura de busqueda seria: find ruta_especificada -name/-iname "opciones"  -type
+en las obciones siempre irá la paabra -name para distinguir entre mayusculas o minusculas ó -iname si no quieres que
+distinga entre minusculas o mayusculas.
+Direccion de ruta actual ".", direccion de ruta anterior ".."
+
+tipos:
+d=directorios,f=ficheros,l=enlaces simbolicos,b=dispositivos de bloque,c= dispositivos de caracter y s= sockets 
+
+
+ejemplo: find .   -iname "*.mp3"
+         En este ejemplo ponemos el comando find luego la ruta, en este caso ponemos un punto "." ya que 
+         un punto representa que trabajaremos con archivos que estan en el, luego ponemos -iname por que no queremos
+         considerar la diferencia entre minusculas y mayusculas al buscar el archivo y por ultimo especificamos 
+         un tipo a buscar , que en este caso es que sea de tipo .mp3 eso lo especificamos entre comillas.  
+ 
+ejemplo: find .   -iname "*i*.mp3"
+         En este ejemplo ponemos el comando find luego la ruta, en este caso ponemos un punto "." ya que 
+         un punto representa que trabajaremos con archivos que estan en el, luego ponemos -iname por que no queremos
+         considerar la diferencia entre minusculas y mayusculas al buscar el archivo y por ultimo especificamos 
+         un tipo a buscar , que en este caso es que tenga una letra "i" en cualquier parte del nombre y que sea de 
+         tipo .mp3 eso lo especificamos entre comillas.  
+
+ejemplo: find .   -iname "*i*" -type f
+         En este ejemplo ponemos el comando find luego la ruta, en este caso ponemos un punto "." ya que 
+         un punto representa que trabajaremos con archivos que estan en el, luego ponemos -iname por que no queremos
+         considerar la diferencia entre minusculas y mayusculas al buscar el archivo y por ultimo especificamos 
+         un tipo a buscar , que en este caso es que tenga una letra "i" en cualquier parte del nombre y de tipo file 
+        (folder).  
+         
+ 
+Más opciones:    
+-size +/-<n> permite indicar el tamaño máximo y/o mínimo de los ficheros a buscar. Por defecto el tamaño se expresa en
+ bloques de 512 bytes, pero se puede especificar las magnitudes por un carcater: c se referirá a bytes, k a kilobytes,
+ Ma megabytes y G a gigabytes.
+
+
+ ejemplo: -size +2M
+          aqui buscara archivos que ocupen espacios que pesen más de dos megas 
+          -size +2G
+          aqui buscara archivos que ocupen espacios que pesen más de dos gigas }
+
+opcion permisos:
+-perm nosotros usamos este comando para especificar que queremos un archivo que cumpla con permisos especificos
+(expresados de manera binaria), si ponemos "-"  nos referiremos a permisos activos y / a permisos obcionales  
+ejemplo de archivos deisponibles: 
+
+-rw-rw-r--
+-rw-------
+-r--------
+      
+ejemplo:   find -perm 600
+           en este caso nos buscara un archivo que tenga especificamente solo los siguientes permisos: -rw-------
+
+ejemplo:   find -perm -600
+           en este caso nos buscara archivos que contengan activos los permisos seleccionados en el grupo
+           especificado: -rw-rw-r--
+                         -rw-------  
+ejemplo:   find -perm /600 
+           en este casodecimos que si un archivo tiene activo cualquiera de los permisos establecidos lo vamos
+           a seleccionar, ya que todos tienen al menos uno activo seleccionamos todos:
+                         -rw-rw-r--
+                         -rw-------
+                         -r--------
+opcion usuarios:
+-user <usuario> especifica el usuario propietario del fichero
+-group <usuario>especifica el grupo propietario del fichero         
+
+ejemplo: -user root 
+         aqui vere todos los archivos del usuario root  
+ejemplo: -group root 
+         aqui veremos los archivos del grupo root
+EJEMPLO: find -user alumno -group
+
+
+opcion fecha de modificación
+-mmin [+/-]n los datos que proporcionemos a lado del signo mas o menos especificaran minutos transcurridos antes
+      o despues de modificar un archivo.
+-mtime [+/-]n los datos proporfionado despues de mtime nos dira los dias que han pasado despuesde la modificacion de
+       un documento. 
+
+
+opcion especificacion de niveles en los que deciende en una carpeta para buscar un documento:
+-maxdepth <niveles> Desciende una cantidad determinada de niveles en una carpeta buscando un archivo si le pongo
+                    -maxdepth 1  solo buscará en el directorio actual.
+EJEMPLO: find -maxdepth 4 -iname "*a*"
+         en este comando decendemos 4 niveles del directorio actual y buscamos un archivo que contenga la letra "a" 
+          sin importar si es mayuscula o minuscula 
+
+
+opcion ejecutar comandos en los elementos de fine:
+-exec <comando>;  permite defiir un comando a ejecutarse para cada resultado de la busqueda. La cadena {} se sustituye
+por el nombre de os ficheros encotrados. El caracter ; permite idicar la finalización del comando. (Tanto {} como ; tienen
+que entre comillas o entre contrabarras para evitar que sea sustituidopor el shell)
+
+ejemplo: 
+find /etc/ -iname "*.conf" -size -1M -exec cp "{}" /home/copias/ ";"
+con este comando buscamos en la carpeta etc un archivo que pese menos de un mega, sin importar si su nombre tiene
+mayusculas o minúsculas, detipo .conf, después ocuparemos el comando exec para mover el o los archivos en la 
+ruta especificada (el o los archivos seran represntados por las llaves) y al final establecemos que hemos
+terminado el comando con ";". Notael comando exec siempre suele ir al final.
+
+ejemplo: 
+find ~ -size +2G -exec rm "{}" ";" 
+con este comando buscamos en el directorio home (~) un archivo con tamaño mayor a 2G y con el comando exec todos
+los archivos encontrados con esa condicion sera borrado
+
+filtro grep:
+grep palabra_a_buscar   este filtro se ocupa principalmete para filtrar nombres de archivos dentro de un directorio 
+y buscar uno que contega una palabra en específico
+
+
+ejemplo: 
+find documentos/ -type f -exec grep -l informe "{}" ";" 
+aqui buscamos un archivo en la carpeta documentos de tipo file (carpeta) y usamos el comando exec para filtar
+la busqueda a una carpeta o carpetas con el nombre informe y ponemos -l para que os desu diereccion
+
+ejemplo:
+find -size +50M -exec ls -lh "{}" ";"
+aqui buscamos un archivo de masde 50 Megas y con el comando execespecificamos que todos los archivos que encontremos
+con estas especificaciones los listemos y nos muestren sus especificaciones y poder visualizar sus tamaños 
+de tipo humano
