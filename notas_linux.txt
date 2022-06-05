@@ -1,4 +1,18 @@
+para usar git en linux instalamos meld y y gitg 
++++++++++++++++++++++++++++++++++++++++++++configurar herrmientas+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+git config --global user.name "nombre_del_usuario"
+git config --global user.email "email del usuario"
+
 00++++++++++++++++++++++++++++++++usuarios+++++++++++++++++++++++++++++++++++++++++++++++
+
+name: IvanHRz
+email: ivan-huerta2020@outlook.com
+estos son mis datos de enlace con git y github whoami
+paraver cuantos y cuales son los usuarios de una terminal linux usar el sigueinte comando:
+cat /etc/passwd             este hasta abajo nos mostrara los usuarios(todos los que tengasn un /home/usuario:bin/bash)
+ver lista de usuarios de inicio de sesion en linux: cut -d: -f1 /etc/passwd           en la parte de abajo veremos los usuarios
+
+con el comando: tail     podemos hacer una busqueda e los 10 ultimos usuarios pulsando: tail /etc/passwd  
 ubuntu se usa la oreden sudo pero en debian se usa la orden "su", si no especificamos el usuario al que queremos cambiar 
 por defecto cambiamos al usuario root del sistema y nos pedira contraseña 
 ponermos exit para salir del usuario root
@@ -210,15 +224,15 @@ la segunda del grupo
 * whoami este comando te dice que usuario eres
 * groups este comando te dira a que grupo perteneces  
 * id la orden id te da informacion de un usuario, grupo principal y tus otros grupos 
-* adduser estecomando lo utilizamos para crear un usuario cuando estamos adentro de unusuario root ejemplo: adduser ana  y creamos el usuario ana 
+* adduser este comando lo utilizamos para crear un usuario cuando estamos adentro de unusuario root ejemplo: adduser ana  y creamos el usuario ana 
 le creamos una contraseña y la repetimos, no tenemos por que ir rellenando odoslos dtos requeridos y vamos dando enter hasta terminar 
-* addgroup   podemos crear  grupos con este comando ejemplo: addgroup alumnos      y crearemos el grupo alumnoslo podremos utilizar como grupo 
+* addgroup   podemos crear  grupos con este comando ejemplo: addgroup alumnos      y crearemos el grupo alumnos, lo podremos utilizar como grupo 
 principal o secundario
 * usermod -g modifica el grupo principal de un usuario ejemplo: usermod -g alumnos ana      con esto estariamos diciendo que el grupo 
 principal de ana seria alumnos lo podemos verificar con id 
-*chown    podemos modificar el usuario y el grupode de un sistema de ficheros  (tenemos que ser uuarios root) por ejemplo si tenemoc un fichero 
+*chown    podemos modificar el usuario y el grupode de un sistema de ficheros  (tenemos que ser usuarios root) por ejemplo si tenemos un fichero 
 (archivo) que es propiedad de un usuario en especifico, por ejemplo ana y con un grupo llamado alumnos  y quisieramos cambiar su usuario y
-su grupo usariamos el comando chown usuario_x_el_que_cambiamos:grupor_x_el_que_cambiamos noombre_del_fichero   ejemplo si le perteneciera al 
+su grupo usariamos el comando: chown usuario_x_el_que_cambiamos:grupor_x_el_que_cambiamos noombre_del_fichero   ejemplo si le perteneciera al 
 usuario ana con un grupo llemado users un archivo llamado  hola.txt y lo queremos cambiar a unusuario llamado tux y a un grupo llamado alumnos
 ponemos: chown tux:alumnos hola.txt
 esto tambien se puede hacer de forma independiente osea cambiando solo un usuario o solo el grupo. para cambiar solo el usuario se hace 
@@ -414,3 +428,81 @@ find -size +50M -exec ls -lh "{}" ";"
 aqui buscamos un archivo de masde 50 Megas y con el comando execespecificamos que todos los archivos que encontremos
 con estas especificaciones los listemos y nos muestren sus especificaciones y poder visualizar sus tamaños 
 de tipo humano
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++Filtrar texto+++++++++++++++++++++++++++++++++++++++++
+echo: muestra el texto que recibe, con -e interpreta los caracteres especiales como \n que seria un salto de linea
+si no se pone -e echo imprimira en pantalla incluso \n
+ejemplo: echo "esto es \n un ejemplo"       imprime:esto es \n un ejemplo
+
+ejemplo:echo -e "esto es \n un ejemplo"       imprime:esto es
+                                                       un ejemplo
+
+
+
+cat : muestra  el contenido de un archivoy puede concatenar ficheros de texto.  usamos -n para ver el numero
+de lineas en el archivo
+
+
+more: este comando os divide la visualizacion de un archivo por pantallas, como si fuera un libro, con la 
+tecla espaciadora nos va pasando las pantallas asta llegar al final del documento, con la tecla q salimos del modo 
+more y con la tecla h nos despliega un menu que    
+
+
+less: de principo hace lo mismo que more y con las mismas teclas pero te limpia la pantalla al salir y esta optimizado 
+para ficheros demuchas lineas, es mas eficiete y rapido que more. Podemos teclear la cantidad de lines que quermos 
+avanzar  
+
+
+head: este comando os sirve para ver solo las primeras ineas de un archivo, por defecto son 10
+si queremos  especificar el umero de lineas a ver ponemos: head -nnumero_de_lineas
+ejemplo, si queremos ver las primeras 23 lineas ponemos: head -n23  
+ota siempre podemos usar los comodines * y ?
+ejemplo:  Head -n5 *.log
+aqui le decimos que nos busque las primeras 5 lineas de todos los ficheros que terminen con .log
+
+
+tail: nos sirve para ver las ultimas lineas de un archivo,por defecto son 10  
+
+cut 
+corta una parte especificada de una linea, mostrando solo una parte de la linea usa el parametro "-c"
+lo cual nos ayuda a especificar los caracteres que queremos brrar. Se pueden utilizar números indepentientes separados
+por comas o dos números separados por guion para indcar el inincio y el fin de un rango. Si algno no está 
+presente se entiende que será el inicio o el fin de linea. el parametro -d funciona com un caracter separador  entre
+los diferentes campos de una linea, ya que al imprimir el corte en pantalla siempre aparecera todo
+concatenado y la separacionentre un tipo de informacion y otra se señala con ":"  y con el parametro -d 
+podremos separar cada rango o caracter especifico.  el parametro -f 
+elige las columnas que queremosque se muestren. la formade selecccionar funciona igual que para la opcion -c  
+
+ejemplo:
+cut -c5 file .txt
+solo nos mostrara el carcter 5 
+ 
+ejemplo: cut -c 5,10 file.txt 
+aqui le decimos que nos seleccione el carcater 5 y el 10, solo seleccionariamos 2 caracteres el 5 y el 10   
+
+
+
+ejemplo: cut -c 7,25 file.txt
+aqui le decimos que nos seleccione el carcater 7 y el 25, solo seleccionariamos 2 caracteres el 5 y el 10 
+
+
+ejemplo: cut -c1 file.txt
+aqui le decimos que nosmuestre el primer caracter de cada line del archivo file.txt
+
+ejemplo: cut -c1-10 file.txt
+aqui le decios que nosmuestre desde el primer caracter hasa el numero 10
+
+ejemplo: cut -c8-15 file.txt
+aqui le decios que nosmuestre desde el octavo caracter hasa el numero 15
+     
+
+podemos mezclar la busqueda de caraceres especificos y de rangos
+ejemplo: 
+cut -c1-3,10-15,25 file.txt 
+aqui le decimos que queremos elrango de 1 al 3 del 10 al 15 y el caracter 25
+
+ejemplo :
+cut -d":" -f1 file.txt 
+aqui nos corta todas las lineas hasta que encuentre ":" 
