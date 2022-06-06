@@ -76,7 +76,7 @@ ejemplo de ruta relativa:   mv nombre1.txt ..    aqui movemos el archivo a una c
 ejemplo de una ruta absoluta: mv nombre1.txt /home/alumno/ficheros/documentos     aqui movimos un documento a documentos  
 *mv tambien sirve para renombrar un rchivo por ejemplo:   mv nombre1.txt  nombre2.txt el nombre 2 seria el nuevo nombre y el 1 el viejo
 *cat muestra la informacion de texto de un archivo
-
+*nano podemos editar el contenido de un archivo 
 echo "caracteres dentro de un fichero(archivo)  " esto nos sirve para crear contenido dentro de un archivo en este caso una linea de caracteres
 echo "conteido" > nombre_de_archivo_a_crear       crea un archivo y le agrega el contenido establecido en las comillas
 echo teto con spacios >> archivo_en donde_se_escribira.txt 
@@ -506,3 +506,39 @@ aqui le decimos que queremos elrango de 1 al 3 del 10 al 15 y el caracter 25
 ejemplo :
 cut -d":" -f1 file.txt 
 aqui nos corta todas las lineas hasta que encuentre ":" 
+
+
+
+
+grep
+este comando nos sirve para mosrar las lineas que cumplen un patrón. se puede
+usar para palabras o expresiones regulares, por si solo solo buscara que haya coincidencia
+con la letra o palabra abuscar pero eso nos puede dejar muchas opciones para eso necesitamos 
+parametros de busqueda: La opcion "-v" muestra las que no
+coinciden con el patron, "-l" no nos indica la liea en donde esta la palabra buscada, solo indica
+el nombre del fichero donde ha encontrado 
+alguna coincidencia, "-w" el patron tiene que ser una palabra independiente osea 
+que la palabra o letra tiene que ser especifica y no forma parte de otra palabra o 
+este concatenada con otra letra,"-n"nos 
+indica el numero de la linea en donde ha encontrado la palabra, "-i" no distingue entre mayusculas y minusculas, "-c"
+muestra la cantidad de lineas que cumplen con el patron, "-r" busca en los ficheros
+de forma recursiva(no solo busca en un directorio, tambien busca en los
+directorios de los directorios).   
+
+
+grep 100 /etc/passwd
+este cmando nosdira que busque el 100 en passwd y gred nos arrojara todoslos numeros
+que tengan 100 al inicio o final o que sean exactos
+100000
+1010100
+100          <--este seria el unicoq que nos interesa
+
+grep -w 100 /etc/passwd   
+este comando a diferencia del anterior solo nos seleccionara la opcion 100
+
+
+
+
+
+
+
