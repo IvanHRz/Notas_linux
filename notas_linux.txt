@@ -154,10 +154,10 @@ sistema
 
 
 • ENLACES 
-en linux cada fichero y carpeta tiene asignado un numero inodo (numero de identificcion o indice)se amacenan atributos, permisos , propietario,
-localizacion en el disco duro, un en lace duro apunta al lugar en el disco duro en donde esta el contenido del archivo y el simbolico apunta al
- archivo en si(ruta). Un enlace simbolico es como los accesos directos en windows que estan en el escritorio, en realidad esos accesos o contienen
-el programa nin el ejecutable del programa pero nos facilitan la vida teniendolos en el escritorio a tener todos los archivos o elejecutable
+en linux cada fichero y carpeta tiene asignado un numero inodo (numero de identificcion o indice) se almacenan atributos, permisos , propietario,
+localizacion en el disco duro, un enlace duro apunta al lugar en el disco duro en donde esta el contenido del archivo y el simbólico apunta al
+ archivo en si(ruta). Un enlace simbolico es como los accesos directos en windows que estan en el escritorio, en realidad esos accesos no contienen
+el programa ni el ejecutable del programa pero nos facilitan la vida teniendolos en el escritorio a tener todos los archivos o elejecutable
  de un programa ese acceso directo apunta a la rua en donde esta la carpet del programa en nuestro disco y luego el ejecutable ejecuta el programa
 los permisos de los enlaces simbolicos empiezan con "l". si creamos un enlace duro y despues eliminamos el archivo original de donde hicimos el
  enlace el contenido de este estara intacto ya que tambien estará en el uevo archivo, sin embargo si eliminamos el archivo original al cual enlazamos
@@ -187,12 +187,12 @@ si queremos copiar una carpeta dentro de otra tenemos que usar el comando agrega
     ejemplo:  cp  archivo_a_copiar.txt  archivo_a_copiar2.txt directorio(carpeta que recibira)
 
 
--comodin:  "*" usar asterisco nos sirve para seleccionar archivos en una carpeta, nos sirve para filtrar archivos y extenciones detipo de archivo
-    ejemplo podemos seleccionararchivos de un tolo tipo de extencion com jpg poniendo *.jpg    y si por ejemplo queremos seleccionar 
-    un ripo especifico de archivos que empiecen con el mismo nombre peroque terminen difrente por ejemplo: oficio_1.txt, oficio_2.txt etc
+-comodin:  "*" usar asterisco nos sirve para seleccionar archivos en una carpeta, nos sirve para filtrar archivos y extenciones de tipo de archivo
+    ejemplo podemos seleccionar archivos de un solo tipo de extencion com jpg poniendo *.jpg    y si por ejemplo queremos seleccionar 
+    un tipo especifico de archivos que empiecen con el mismo nombre pero que terminen diferente por ejemplo: oficio_1.txt, oficio_2.txt etc
     ponemos oficio*    y seleccionaremos a todos los archivos de ombre oficio 
 
-si queremos archivos que contengan la una letra en especifico como aletra "a" ponemos *a*  y los buscara
+si queremos archivos que contengan una letra en especifico como aletra "a" ponemos *a*  y los buscara
 si queremos buscar un archivo que comience con la letra "t" ponemos t*   y lo buscamos     
  
 
@@ -204,11 +204,11 @@ oficio_34.txt
 oficio_123.txt
 oficio_2.txt
             y ponemos:
-ls-l oficio_?          aqui decimos que nos busque un archivo llamado oficio_    y que tenga un solo caracter antes de llegar a su extencion 
-nos seleccionaria los archivos oficio_1.txt oficio_3.txt y oficio_2.txt
+ls-l oficio_?          aqui decimos que nos liste de forma detallada  un archivo llamado oficio_    y que tenga un solo caracter antes de
+llegar a su extencion nos seleccionaria los archivos oficio_1.txt oficio_3.txt y oficio_2.txt
 si pondemos  
-ls-l oficio_??       aqui decimos que nos busque un archivo llamado oficio_   y que tenga dos caracteres antes de llegar a su extencion 
-nosseleccionaria el arhivo oficio_34.txt
+ls-l oficio_??       aqui decimos que nos liste de forma detallada un archivo llamado oficio_   y que tenga dos caracteres antes de llegar a
+su extencion nos seleccionaria el arhivo oficio_34.txt
 
 -se pueden mezclar los dos comodines sin problemas por ejemplo :
 ls -l oficio_??.*      aqui decimos que queremos un archivo llamado oficio  que contega dos caracteres antes de la extencion y que luego nos
@@ -216,32 +216,41 @@ ls -l oficio_??.*      aqui decimos que queremos un archivo llamado oficio  que 
 
 
 +++++++++++++++++++Permisos en el sistema++++++++++++++++++++++++++
-usamos la orden "su" si no especificamos elusuario nos redirigira directamente al usuario root. en ubuntu se suele utilizar "sudo" 
-un usuario siempre pertenece a u grupode forma principal pero puede pertenecer a otros grupos de forma secundaria 
-al estar en root ypresionar ls -l nos desplegara una lista en donde la primer columna de nombres es del propietario del fichero y 
-la segunda del grupo 
+usamos la orden "su" si no especificamos el usuario nos redirigira directamente al usuario root. en ubuntu se suele utilizar "sudo"
+nosotros en Debian podemos usar "sudo" para llamar al super usuario antes de da runa orden que requiera todos los permisos a la consola, pero
+no podemos usar "sudo" para cambiarde usuario, especificamente para cambiar de usuario tenemos que usar "su" 
+un usuario siempre pertenece a un grupo de forma principal pero puede pertenecer a otros grupos de forma secundaria 
+al estar en root y presionar ls -l nos desplegará una lista en donde la primer columna de nombres es la del propietario del fichero y 
+la segunda del grupo, ejemplo: Al poner el comando "ls -lh" podemos aprecia el siguiente desplegado de especificaciones de un archivo
+
+  permisos   no. de elaces en el archivo    usuario     grupo    tamaño del archivo      fecha    hora     nombre del archivo
+-rwxrwxrwx               1                   root       root          1.34M              jun 2    22:35          file.txt
+
+
 * exit uso este comando para salir de usuario root   
 * whoami este comando te dice que usuario eres
 * groups este comando te dira a que grupo perteneces  
 * id la orden id te da informacion de un usuario, grupo principal y tus otros grupos 
 * adduser este comando lo utilizamos para crear un usuario cuando estamos adentro de unusuario root ejemplo: adduser ana  y creamos el usuario ana 
-le creamos una contraseña y la repetimos, no tenemos por que ir rellenando odoslos dtos requeridos y vamos dando enter hasta terminar 
+le creamos una contraseña y la repetimos, no tenemos por que ir rellenando todos los dtos requeridos y vamos dando enter hasta terminar 
 * addgroup   podemos crear  grupos con este comando ejemplo: addgroup alumnos      y crearemos el grupo alumnos, lo podremos utilizar como grupo 
 principal o secundario
 * usermod -g modifica el grupo principal de un usuario ejemplo: usermod -g alumnos ana      con esto estariamos diciendo que el grupo 
 principal de ana seria alumnos lo podemos verificar con id 
-*chown    podemos modificar el usuario y el grupode de un sistema de ficheros  (tenemos que ser usuarios root) por ejemplo si tenemos un fichero 
+*chown    podemos modificar el usuario y el grupo de de un sistema de ficheros  (tenemos que ser usuarios root) por ejemplo si tenemos un fichero 
 (archivo) que es propiedad de un usuario en especifico, por ejemplo ana y con un grupo llamado alumnos  y quisieramos cambiar su usuario y
-su grupo usariamos el comando: chown usuario_x_el_que_cambiamos:grupor_x_el_que_cambiamos noombre_del_fichero   ejemplo si le perteneciera al 
-usuario ana con un grupo llemado users un archivo llamado  hola.txt y lo queremos cambiar a unusuario llamado tux y a un grupo llamado alumnos
-ponemos: chown tux:alumnos hola.txt
+su grupo usariamos el comando: chown usuario_x_el_que_cambiamos:grupor_x_el_que_cambiamos noombre_del_fichero   
+ejemplo: si le perteneciera al usuario ana con un grupo llamado users un archivo llamado  hola.txt y lo queremos cambiar a unusuario llamado
+tux y a un grupo llamado alumnos, ponemos: chown tux:alumnos hola.txt
 esto tambien se puede hacer de forma independiente osea cambiando solo un usuario o solo el grupo. para cambiar solo el usuario se hace 
 chown nuevo_propietario fichero.txt por ejemplo sicambiaramos de usuario ana a tux: chown tux hola.txt
 -para cambiar el grupo solo se ponen dos puntos antes del nuevo ombre del grupo por ejemplo: chown :alumnos hola.txt
 
 *passwd usamos este comando para cambiar la contrasea de un usuario: passwd usuario        con esto cambiamos la contraseña del usuario
 seleccionado en caso de no especificar un usuario se cambiaria por default la contraseña de usuario que esta poniendo este comando 
-estsosse dividen en 4 tipos
+
+
+los permisos del sistema se dividen en 4 tipos
 
 tipo de fichero=1, usuario=2, grupo=3 y otros=4 
 
@@ -254,13 +263,14 @@ d rwx r-x r-x
 r significa que tenemos concedido el permiso de lectura
 w significa que tenemos concedido el permiso de escritura
 x significa que podemos ejecutar ese fichero
-los permisos siempre se dividen en 3 partes, la primera nos dice los permisos que tiene el usuari, el sgundo los ue tiene el grupo
-y por ultimo el resto de usuarios . El orden de importancia y de ordenacion siempre sera r primero luego w y al ultimo x . ejemplo:
+
+los permisos siempre se dividen en 3 partes, la primera nos dice los permisos que tiene el usuario, el segundo los que tiene el grupo
+y por ultimo el resto de usuarios . El orden de importancia y de ordenacion siempre sera r primero luego w y al ultimo x,  ejemplo:
 -rw-rw-rw- aqui tenemos los tres bloques con dos permisos par cada bloque 
 
 
 *directorios:dependen con que caracter empiecen los permisos del sistema, indicara que tipo de sistema de ficheros son , si empiezan con
- una "d" significa que es un directorio, si tiene una "l"es unenlace  y si tiene un guion "-" significa que es un fichero regular    
+una "d" significa que es un directorio, si tiene una "l"es un enlace y si tiene un guion "-" significa que es un fichero regular    
 r en un directorio es listar, eso significa que se desplegaran los archivos del folder 
 ejemplo: dr-xr-xr-x      en estos permisos estamos trabajando con un directorio por que tiene 4 grupos de carcateres y empieza con la letra d
                          y nos podra mostrar la lista de archivos al poner el comando ls -l ya que tiene una "r" al lado de la "d" 
@@ -274,14 +284,14 @@ x significa el poder entrar al directorio
 *chmod otorgar o quitar permisos, estos permisos se daran a los 3 grupos usuarios, grupos y demás
 primera forma:
  ESTRUCTURA: chmod +letra_de_permiso_a_otorgar archivo.txt          ejemplo:     chmod +r hola.txt
-       aqui le otorgamos el permiso de lectura al archivo hola.txt 
+       aqui le otorgamos el permiso de lectura a "u","g" y "o" del archivo hola.txt 
 para quitar permiso la estructura es: chmod -letra_de_permiso_a_otorgar archivo.txt                 ejemplo:     chmod -r hola.txt
-aqui le quitamos el permiso de lectura a hola.txt  
+aqui le quitamos el permiso de lectura a "u","g" y "o" del archivo hola.txt  
 
 
 si queremos quitar especificamente un permiso los tres grupos se especificaran con la letra u-g-o   siendo "a" para todos, "u" el del propietario, "g" los grupos
 y "o" los demás estructura  chmod u+letra_de_permiso_a_otorgar archivo.txt          ejemplo:     chmod u+r hola.txt
-aqui le dimos el permiso de lectura solo al promietariopodriamos dar o quitr varios permisos especificos a la vez ejemplo: chmod g+r,o+r hola.txt
+aqui le dimos el permiso de lectura solo al promietario, podriamos dar o quitar varios permisos especificos a la vez ejemplo: chmod g+r,o+r hola.txt
 aqui le dimos permiso de lecturaa los grupos y a los otros separndo con una coma.
 
 segunda forma:
@@ -295,6 +305,7 @@ si quieremos darle los permisos a todos ponemos: chmod u=rwx,g=rwx,o=rwx hola.tx
 
 tercera forma: se expresa en binario de cierta manera es mas facil de entender , recordar siempre que 2^0=1,
                2^1=2, 2^2=4 en donde r=2^2=4, w= 2^1=2 y x=2^0=1. Por lo tanto si vemos:
+
                R|W|X| R|W|X| R|W|X|
                1|1|1| 0|0|1| 1|1|0|
                  7       1     6    
@@ -308,7 +319,7 @@ o podriamos poner  000 y quitar todos los permisos de todos los apartados.
 *find  con este comando podemos hacer una busqueda en una ruta determinada y con especificos parametros de busqueda
 o con tipos de parametros(directorios,ficheros,enlaces simbolicos,dispositivos de bloque dispositivos de caracter ó sockets). 
 la estructura de busqueda seria: find ruta_especificada -name/-iname "opciones"  -type
-en las obciones siempre irá la paabra -name para distinguir entre mayusculas o minusculas ó -iname si no quieres que
+en las obciones siempre irá la palabra -name para distinguir entre mayusculas o minusculas ó -iname si no quieres que
 distinga entre minusculas o mayusculas.
 Direccion de ruta actual ".", direccion de ruta anterior ".."
 
@@ -340,7 +351,7 @@ ejemplo: find .   -iname "*i*" -type f
 Más opciones:    
 -size +/-<n> permite indicar el tamaño máximo y/o mínimo de los ficheros a buscar. Por defecto el tamaño se expresa en
  bloques de 512 bytes, pero se puede especificar las magnitudes por un carcater: c se referirá a bytes, k a kilobytes,
- Ma megabytes y G a gigabytes.
+ M a megabytes y G a gigabytes.
 
 
  ejemplo: -size +2M
@@ -351,21 +362,21 @@ Más opciones:
 opcion permisos:
 -perm nosotros usamos este comando para especificar que queremos un archivo que cumpla con permisos especificos
 (expresados de manera binaria), si ponemos "-"  nos referiremos a permisos activos y / a permisos obcionales  
-ejemplo de archivos deisponibles: 
+ejemplo de archivos disponibles: 
 
 -rw-rw-r--
 -rw-------
 -r--------
       
 ejemplo:   find -perm 600
-           en este caso nos buscara un archivo que tenga especificamente solo los siguientes permisos: -rw-------
+           en este caso nos buscara un archivo que tenga especificamente solo los siguientes permisos en "u": -rw-------
 
 ejemplo:   find -perm -600
-           en este caso nos buscara archivos que contengan activos los permisos seleccionados en el grupo
-           especificado: -rw-rw-r--
+           en este caso nos buscara archivos que contengan activos los permisos seleccionados tanto en "u" como en "u" y en "o"
+                         -rw-rw-r--
                          -rw-------  
 ejemplo:   find -perm /600 
-           en este casodecimos que si un archivo tiene activo cualquiera de los permisos establecidos lo vamos
+           en este caso decimos que si un archivo tiene activo cualquiera de los permisos establecidos lo vamos
            a seleccionar, ya que todos tienen al menos uno activo seleccionamos todos:
                          -rw-rw-r--
                          -rw-------
@@ -445,20 +456,20 @@ cat : muestra  el contenido de un archivoy puede concatenar ficheros de texto.  
 de lineas en el archivo
 
 
-more: este comando os divide la visualizacion de un archivo por pantallas, como si fuera un libro, con la 
-tecla espaciadora nos va pasando las pantallas asta llegar al final del documento, con la tecla q salimos del modo 
+more: este comando Nos divide la visualizacion de un archivo por pantallas, como si fuera un libro, con la 
+tecla espaciadora nos va pasando las pantallas asta llegar al final del documento, con la tecla "q" salimos del modo 
 more y con la tecla h nos despliega un menu que    
 
 
 less: de principo hace lo mismo que more y con las mismas teclas pero te limpia la pantalla al salir y esta optimizado 
-para ficheros demuchas lineas, es mas eficiete y rapido que more. Podemos teclear la cantidad de lines que quermos 
+para ficheros de muchas lineas, es mas eficiete y rapido que more. Podemos teclear la cantidad de lines que quermos 
 avanzar  
 
 
-head: este comando os sirve para ver solo las primeras ineas de un archivo, por defecto son 10
-si queremos  especificar el umero de lineas a ver ponemos: head -nnumero_de_lineas
+head: este comando nos sirve para ver solo las primeras lineas de un archivo, por defecto son 10
+si queremos  especificar el numero de lineas a ver ponemos: head -nnumero_de_lineas
 ejemplo, si queremos ver las primeras 23 lineas ponemos: head -n23  
-ota siempre podemos usar los comodines * y ?
+o tambien siempre podemos usar los comodines * y ?
 ejemplo:  Head -n5 *.log
 aqui le decimos que nos busque las primeras 5 lineas de todos los ficheros que terminen con .log
 
@@ -466,14 +477,15 @@ aqui le decimos que nos busque las primeras 5 lineas de todos los ficheros que t
 tail: nos sirve para ver las ultimas lineas de un archivo,por defecto son 10  
 
 cut 
-corta una parte especificada de una linea, mostrando solo una parte de la linea usa el parametro "-c"
-lo cual nos ayuda a especificar los caracteres que queremos brrar. Se pueden utilizar números indepentientes separados
-por comas o dos números separados por guion para indcar el inincio y el fin de un rango. Si algno no está 
-presente se entiende que será el inicio o el fin de linea. el parametro -d funciona com un caracter separador  entre
+corta una parte especificada de una linea, mostrando solo una parte de la linea, usa el parametro "-c"
+el cual nos ayuda a especificar los caracteres que queremos seleccionar y los demás los borrará. 
+Se pueden utilizar números indepentientes separados
+por comas o dos números separados por guion para indicar el inincio y el fin de un rango. Si algo no está 
+presente se entiende que será el inicio o el fin de linea. el parametro -d funciona como un caracter separador  entre
 los diferentes campos de una linea, ya que al imprimir el corte en pantalla siempre aparecera todo
 concatenado y la separacionentre un tipo de informacion y otra se señala con ":"  y con el parametro -d 
 podremos separar cada rango o caracter especifico.  el parametro -f 
-elige las columnas que queremosque se muestren. la formade selecccionar funciona igual que para la opcion -c  
+elige las columnas que queremosque se muestren. la forma de selecccionar funciona igual que para la opcion -c  
 
 ejemplo:
 cut -c5 file .txt
@@ -505,7 +517,9 @@ aqui le decimos que queremos elrango de 1 al 3 del 10 al 15 y el caracter 25
 
 ejemplo :
 cut -d":" -f1 file.txt 
-aqui nos corta todas las lineas hasta que encuentre ":" 
+aqui -d nos indica que se cortarán todas las lineas hasta que encuentre ":"
+(por que -d actua como delimitador y le estamos estableciendo que el limite sean 
+los dos puntos ":")  y con -f1 que solo semostrara en pantalla la columna 1  
 
 
 
@@ -513,14 +527,15 @@ aqui nos corta todas las lineas hasta que encuentre ":"
 grep
 este comando nos sirve para mosrar las lineas que cumplen un patrón. se puede
 usar para palabras o expresiones regulares, por si solo solo buscara que haya coincidencia
-con la letra o palabra abuscar pero eso nos puede dejar muchas opciones para eso necesitamos 
+con la letra o palabra buscar pero eso nos puede dejar muchas opciones para eso necesitamos 
 parametros de busqueda: La opcion "-v" muestra las que no
 coinciden con el patron, "-l" no nos indica la liea en donde esta la palabra buscada, solo indica
 el nombre del fichero donde ha encontrado 
 alguna coincidencia, "-w" el patron tiene que ser una palabra independiente osea 
 que la palabra o letra tiene que ser especifica y no forma parte de otra palabra o 
 este concatenada con otra letra,"-n"nos 
-indica el numero de la linea en donde ha encontrado la palabra, "-i" no distingue entre mayusculas y minusculas, "-c"
+indica el numero de la linea en donde ha encontrado la palabra, "-i" no distingue entre mayusculas
+ y minusculas, "-c"
 muestra la cantidad de lineas que cumplen con el patron, "-r" busca en los ficheros
 de forma recursiva(no solo busca en un directorio, tambien busca en los
 directorios de los directorios).   
@@ -537,8 +552,90 @@ grep -w 100 /etc/passwd
 este comando a diferencia del anterior solo nos seleccionara la opcion 100
 
 
+++++++++++++++++++++++++++++++++++++++Editor de texto por consola+++++++++++++++++++++++++++++++++
+
+editor: nano
+
+para trabajar con el editor nano colo debemos poner "nano"  en la consola y nos abrira el editor de texto.
+ejemlo: nano _archivo_a_crear_o_a_abrir
+
+en el menun de trabajo nos indica que tenemos que mantener orpimida la tecla control cuando vemos "^"
+o pulsar dos veces seguidas la tecla escape, mientras que la M indica que tenemos que pulsar una sola vez la tecla scape 
+antes de la letra del menu que escojamos.
+podemos usar control +k y copiar una linea y control + upara pegar , usar el orrector ortográfico con control +T 
+
+
+Editor: Vin
+usamos el comando: vi _nombre_del_fichero 
+con control +v  corta una linea y co control p la pega
+si queremos buscar una palabra ponemos "/" y la palabra a buscar pegado de la barra 
+si queremos escribir usamos la tecla "i" cuando terminemos usamos la tecla scape 
+linea de ordenes: pulsamos ":" aqui damos ordenes que queremos hacer como salir del programa, guardar etc si
+queremos salir sin guardar cambios ponemos ":q!"  
+con ":q" salimos 
+con ":w" guardamos 
+con "dd" salimos de modo insercion
+Vi es el primer editor de texto para la consola de Linux. Es importante
+conocerlo porque está en TODAS las distribuciones y modos de arranque.
+Actualmente es más común usar Vim (vi mejorado) que el Vi original.
+Tiene tres modos de funcionamiento:
+• MODO COMANDO
+Se empieza en este modo, siempre podemos volver a él pulsando la tecla ESC.
+Podemos realizar acciones pulsando una o varias teclas  
 
 
 
 
+Sort: este comando nos ayuda a organizar nuestro archivo de texto o listado de archivos 
+sort -r ordena en orden inverso
+sort -n ordena de forma numerica
+sort -h ordena por tamaño y muestra los datos en formato humano 
 
+
+Uniq: ete comando quita archivos repetidos al listar o ver un archivo quita las lineas repetidas
+si tenemos 
+ana
+ana
+eduardo
+julian
+tulio
+juan
+juan
+ana
+
+nos dejara solo 
+ana
+eduardo
+julian
+tulio
+juan
+ana
+
+de modo que quita los repetidos que esten juntos pero los separados los deja
+sus opciones: -d muestra solo las lineas repetidas, -i ignora si es mayusculao minuscula y la -c que muestra as cantidad de
+veces que se repite una linea 
+
+
+
+wc: 
+este comando nos dique la cantidad de linas, palabras y caracteres en un listado de archivos
+o en un documento, si no le damos ningún parametro nos drá los tres datos por defecto. Sus carcateres son:
+-l para lines, -w para palabras y -m para caracteres. Ejemplo:
+wc -l /etc/passwd    aqui solo nos mostrara el numeo de filas de un archivo
+wc -m /etc/passwd    aqui solo nos mostrara el numerode caracteres 
+   
+
+rev: 
+este comando le da la vuelta al texto que estamos leyendo, lo pone como silo estuvieramos leyendo de
+derecha a izquierda, esto nos sirve si queremos ordenar una direccion y queremos quedaros
+solo con el ultimo destino y nos lo posicione al principio .
+ejemplo, tenemos: /etc/perl/net
+y queremos solo la direccion net entoces usamos el comando rev y hacemos uso del comando cut
+rev file.txt | cut-d "/" -f3 | rev
+con el comando rev ivertimos la linea y teemos:
+ten/lrep/cte/
+y luego con el comando cut tenemos que -d nos dice que "/" marcará la separacion de un campo
+y -f3 que solo nos muestre el campo 3 , por lo tanto solo vemos:
+ten/   
+al final volvemos a poner "rev" y nos pone el directorio de forma completamente legible de nuevo:
+/net
