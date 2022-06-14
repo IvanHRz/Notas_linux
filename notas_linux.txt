@@ -551,18 +551,21 @@ que tengan 100 al inicio o final o que sean exactos
 grep -w 100 /etc/passwd   
 este comando a diferencia del anterior solo nos seleccionara la opcion 100
 
+grep ^a /etc/passwd
+este comando nos mostraralas palabras queempiezan con a 
+
 
 ++++++++++++++++++++++++++++++++++++++Editor de texto por consola+++++++++++++++++++++++++++++++++
 
 editor: nano
 
-para trabajar con el editor nano colo debemos poner "nano"  en la consola y nos abrira el editor de texto.
+para trabajar con el editor nano solo debemos poner "nano"  en la consola y nos abrira el editor de texto.
 ejemlo: nano _archivo_a_crear_o_a_abrir
 
-en el menun de trabajo nos indica que tenemos que mantener orpimida la tecla control cuando vemos "^"
+en el menun de trabajo nos indica que tenemos que mantener oprimida la tecla control cuando vemos "^"
 o pulsar dos veces seguidas la tecla escape, mientras que la M indica que tenemos que pulsar una sola vez la tecla scape 
 antes de la letra del menu que escojamos.
-podemos usar control +k y copiar una linea y control + upara pegar , usar el orrector ortográfico con control +T 
+podemos usar control +k y copiar una linea y control + u para pegar , usar el corrector ortográfico con control +T 
 
 
 Editor: Vin
@@ -581,16 +584,34 @@ Actualmente es más común usar Vim (vi mejorado) que el Vi original.
 Tiene tres modos de funcionamiento:
 • MODO COMANDO
 Se empieza en este modo, siempre podemos volver a él pulsando la tecla ESC.
-Podemos realizar acciones pulsando una o varias teclas  
+Podemos realizar acciones pulsando una o varias teclas
+Acciones en el modo comandos:
+‣ Con los cursores o las teclas h,j,k,l nos desplazamos por el texto
+‣ dd borra una linea, yy copia y p pega
+‣ o añade una nueva linea, u deshacer la última acción
+‣ /palabra realiza una búsqueda hacia abajo, ?palabra busca hacia arriba
+‣ i inserta texto antes del cursor, a después del cursor
+‣ ZZ guarda el documento y sale
+‣ v selección visual de texto  
+• MODO INSERTAR
+Podemos insertar texto con normalidad.
+• MODO EX
+ Para acceder al modo ex pulsamos los dos puntos y a continuación ponemos la
+acción a realizar.
+‣ q salir, w escribir el fichero. Se pueden combinar como :wq
+‣ Se puede usar la ! para forzar una acción, como salir sin guardar. :q!
 
 
 
 
-Sort: este comando nos ayuda a organizar nuestro archivo de texto o listado de archivos 
+Sort: este comando nos ayuda a organizar nuestro archivo de texto o listado de archivos, nos ordenara
+alfabeticamente por defecto  
 sort -r ordena en orden inverso
 sort -n ordena de forma numerica
 sort -h ordena por tamaño y muestra los datos en formato humano 
-
+ejemplo:
+ordenar el fichero /etc/passwd en funcion de los nombres de usuario. hazlo tambien de manera inversa
+sudo sort -r /etc/passwd | cut -d":" -f1
 
 Uniq: ete comando quita archivos repetidos al listar o ver un archivo quita las lineas repetidas
 si tenemos 
@@ -620,7 +641,7 @@ veces que se repite una linea
 wc: 
 este comando nos dique la cantidad de linas, palabras y caracteres en un listado de archivos
 o en un documento, si no le damos ningún parametro nos drá los tres datos por defecto. Sus carcateres son:
--l para lines, -w para palabras y -m para caracteres. Ejemplo:
+-l para lineas, -w para palabras y -m para caracteres. Ejemplo:
 wc -l /etc/passwd    aqui solo nos mostrara el numeo de filas de un archivo
 wc -m /etc/passwd    aqui solo nos mostrara el numerode caracteres 
    
@@ -639,3 +660,50 @@ y -f3 que solo nos muestre el campo 3 , por lo tanto solo vemos:
 ten/   
 al final volvemos a poner "rev" y nos pone el directorio de forma completamente legible de nuevo:
 /net
+
+
+
+++++++++++++++++++++++++++++++++++++++++redirecciones +++++++++++++++++++++++++++++++++++++++++++++++++++
+podria decirse que hay dor direcciones disponibles, la primera es hacer que un comando de una accion correcta 
+y se muestre por pantalla y la otra que el usuario escriba un comando que   no se vea en panatalla pero 
+genere una accion en un archivo y en este ultima se deriva en dos partes, la primera es cuando se cumple
+la accion sin ningun error y la segunda cuando se genera un error, a estas seles asignaran respectivamente 
+el nunmero 1 y 2. La segunda nos sirve especialmente para cuando registramos un error en n comando 
+y la consola nosmuestra todo lo que esta mal y este contenido lo podemos almacenar en un archivo usando el numero
+2 antes de la direccion: 2>    y si queremos guardar los datos expresados por consola
+tamto de 1 y 2 ponemos:  &>  
+ 
+
+Usando un solo > si el fichero existe, lo sobrescribe
+• Usando dos >> si existe añade el texto al final
+• Los mensajes de error se pueden redirigir de forma independiente usando 2> o 2>>
+• Para redirigir todos los mensajes se usa &> o &>>
+
++++++++++++++++++++++++++++++++++++++++tuberias+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Además de enviar texto a un dispositivo,
+disponemos de otra potente opción: enviarlo a
+otro comando. Esto se realiza con el carácter "|"
+Recibe el nombre de tubería, ya que establece un
+“canal” por el que pasará el texto de un comando a otro
+ejemplo:
+echo “HOLA MUNDO” | wc
+
+aqui diremos queimprimiremos un las palabras "hola mundo" con el comando "echo" pero ese resultado lo enviaremos por una "tuberia"
+hasta el comando "wc" el cual nos dira lasespecificaciones (cantidad de lineas, palabras y caracteres) que hay en el mensaje enviado
+
+grep -w ana /etc/passwd | cut -d”:” -f1 | sort
+
+el comando "grep -w" nos dira que buscara unapalabra especifica (ana) en un archivo con la direccion  /etc/passwd
+el resultado nos lo enviara por una tuveria en donde cortaremos la linea en donde encotramos la palabra ana en donde 
+encontremos el parametro ":" y nos imprimira la primera columna del archivo y ese resultado lo enviaremos por
+una tuberia al comando sort que ordenara las columnas de mayor a menor  
+
+•También se puede redirigir la entrada de texto, para ello usamos el carácter <, que
+enviará la información que lee de un fichero al comando.
+sort < listado
+mysql < db_backup.sql
+• Si queremos desechar alguna salida, podemos usar el dispositivo /dev/null. Enviar texto
+hará que no aparezca ni se guarde en ningún sitio
+grep -r max_size /etc/* &> /dev/null
+• Podemos combinar todo lo estudiando en este tema
+ wc /etc/a* 2> /dev/null | sort -n > count
