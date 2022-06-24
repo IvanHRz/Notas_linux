@@ -44,7 +44,7 @@ ls -i muestra el indice de un archivo
 ls -lSh para ordenar alfabeticamente y mostrar el tamaño del archivo
 ls -lShr para ordenar alfabeticamente de z a A mostrando el peso del archivo
 cd .. vamos al directorio anterior
-mkdir creo carpetas 
+mkdir crea carpetas 
 Si quiero usar espacio en un nombre deberé ponerlo entre comillas o con un carácter de escape (\)
 nano podemos editar el conntenido de un archivo txt
 man podemos ver informacion de algun comando
@@ -64,14 +64,15 @@ eso es una ruta relativa
 *history  busca tosdos los comandos que has usado y los enumera, luego usando " !numero_de_comando " puedes seleccionar el comando que quieres usar 
 *control + r aparece un buscador de comandos, le ponemos las letras que creemos que lleva algun comando que hayamos escrito antes y nos ayuda a buscarlo  
 *para crear un arbol de carpeatas usamos mkdir  ponemos mkdir carpeta_existente/nombre_de_carpeta_a_crear 
-*si usamos mkdir y ponemos algun elemento no existente en nuestro arbol de carpetas podemos usar -p despues de mkdir y automaticamente se crea, ejemplo:
+*si usamos mkdir y ponemos algun elemento no existente en nuestro arbol de carpetas podemos usar -p despues de mkdir y automaticamente se crea, 
+ejemplo:
 mkdir -p carpeta_padre_inexistente/carpeta_a_crear
-*rm -r con esta sentencia podemos borrar un directorio  ejemplo rm -r carpeta_a_borrar
+*rm -r con esta sentencia podemos borrar un directorio  ejemplo: rm -r carpeta_a_borrar
 *rm borra archivos 
 *touch nombre_de_archivo.txt con esto creamos un archivo (fichero.txt) dentro de una carpeta (directorio) 
 *mv mueve un archivo de un destino a otro y para cambiar el nombre de un archivo (fichero) se toma
 el lugar de origen por default (por que ya estas en el otrigen) y solo tienes que escoger el archivo que vas a mover
-y el lugar al que lo vas a llevar, puedes usarrutas relativas o absolutas
+y el lugar al que lo vas a llevar, puedes  usar rutrelativas o absolutas
 ejemplo de ruta relativa:   mv nombre1.txt ..    aqui movemos el archivo a una carpeta anterior 
 ejemplo de una ruta absoluta: mv nombre1.txt /home/alumno/ficheros/documentos     aqui movimos un documento a documentos  
 *mv tambien sirve para renombrar un rchivo por ejemplo:   mv nombre1.txt  nombre2.txt el nombre 2 seria el nuevo nombre y el 1 el viejo
@@ -217,13 +218,13 @@ ls -l oficio_??.*      aqui decimos que queremos un archivo llamado oficio  que 
 
 +++++++++++++++++++Permisos en el sistema++++++++++++++++++++++++++
 usamos la orden "su" si no especificamos el usuario nos redirigira directamente al usuario root. en ubuntu se suele utilizar "sudo"
-nosotros en Debian podemos usar "sudo" para llamar al super usuario antes de da runa orden que requiera todos los permisos a la consola, pero
-no podemos usar "sudo" para cambiarde usuario, especificamente para cambiar de usuario tenemos que usar "su" 
+nosotros en Debian podemos usar "sudo" para llamar al super usuario antes de dar una orden que requiera todos los permisos a la consola, pero
+no podemos usar "sudo" para cambiar de usuario, especificamente para cambiar de usuario tenemos que usar "su" 
 un usuario siempre pertenece a un grupo de forma principal pero puede pertenecer a otros grupos de forma secundaria 
 al estar en root y presionar ls -l nos desplegará una lista en donde la primer columna de nombres es la del propietario del fichero y 
 la segunda del grupo, ejemplo: Al poner el comando "ls -lh" podemos aprecia el siguiente desplegado de especificaciones de un archivo
 
-  permisos   no. de elaces en el archivo    usuario     grupo    tamaño del archivo      fecha    hora     nombre del archivo
+  permisos   no. de enlaces en el archivo    usuario     grupo    tamaño del archivo      fecha    hora     nombre del archivo
 -rwxrwxrwx               1                   root       root          1.34M              jun 2    22:35          file.txt
 
 
@@ -264,20 +265,21 @@ r significa que tenemos concedido el permiso de lectura
 w significa que tenemos concedido el permiso de escritura
 x significa que podemos ejecutar ese fichero
 
-los permisos siempre se dividen en 3 partes, la primera nos dice los permisos que tiene el usuario, el segundo los que tiene el grupo
+los permisos siempre se dividen en 4 partes, la primera nos dice que tipo de archivo es,los segundo  los permisos que tiene el
+ usuario, el tercero los que tiene el grupo
 y por ultimo el resto de usuarios . El orden de importancia y de ordenacion siempre sera r primero luego w y al ultimo x,  ejemplo:
 -rw-rw-rw- aqui tenemos los tres bloques con dos permisos par cada bloque 
 
 
 *directorios:dependen con que caracter empiecen los permisos del sistema, indicara que tipo de sistema de ficheros son , si empiezan con
-una "d" significa que es un directorio, si tiene una "l"es un enlace y si tiene un guion "-" significa que es un fichero regular    
-r en un directorio es listar, eso significa que se desplegaran los archivos del folder 
+una "d" significa que es un directorio, si tiene una "l"es un enlace y si tiene un guion "-" significa que es un fichero regular.    
+complementario si aparece una "r" en un directorio significa: listar, eso significa que se desplegaran los archivos del folder 
 ejemplo: dr-xr-xr-x      en estos permisos estamos trabajando con un directorio por que tiene 4 grupos de carcateres y empieza con la letra d
                          y nos podra mostrar la lista de archivos al poner el comando ls -l ya que tiene una "r" al lado de la "d" 
 si entramos a un directorio en donde no tiene el permiso "W" que seria el de poder crear o borrar un documento, entonces no podriamos
 afectar a ningun documento dentro de el (borrar o crear) pero si podriamos editar el contenido de losdocumentos si estos
 tienen esos permisos. X significa que podemos entrar y ver los archivos de una carpeta 
-r significa listar elementosde un directorio
+r significa listar elementosde un directorio (poder los archivos disponibles en una carpeta)
 w significa el poder crear o eliminar archivos en un directorio
 x significa el poder entrar al directorio   
 
@@ -298,7 +300,7 @@ segunda forma:
 otra forma de dar permisos especificos es igualando el usuario especifico al permiso que le otorgaremos pero quedaran descartados cualquier otro
 permiso que no especifiquemos.
 ejemplo: chmod u=r,g=w,o=r hola.txt
-esto nos dira que el usuario propietario solo tendra el permiso derelctura y todos los demas permisos estan descartados y asi con los demás 
+esto nos dira que el usuario propietario solo tendra el permiso de lectura y todos los demas permisos estan descartados y asi con los demás 
 si quieremos quitarle los permisos a todos ponemos: chmod u=,g=,o= hola.txt    
 si quieremos darle los permisos a todos ponemos: chmod u=rwx,g=rwx,o=rwx hola.txt 
 
@@ -408,8 +410,8 @@ EJEMPLO: find -maxdepth 4 -iname "*a*"
 
 
 opcion ejecutar comandos en los elementos de fine:
--exec <comando>;  permite defiir un comando a ejecutarse para cada resultado de la busqueda. La cadena {} se sustituye
-por el nombre de os ficheros encotrados. El caracter ; permite idicar la finalización del comando. (Tanto {} como ; tienen
+-exec <comando>;  permite definir un comando a ejecutarse para cada resultado de la busqueda. La cadena {} se sustituye
+por el nombre de los ficheros encotrados. El caracter ; permite indicar la finalización del comando. (Tanto {} como ; tienen
 que entre comillas o entre contrabarras para evitar que sea sustituidopor el shell)
 
 ejemplo: 
@@ -707,3 +709,302 @@ hará que no aparezca ni se guarde en ningún sitio
 grep -r max_size /etc/* &> /dev/null
 • Podemos combinar todo lo estudiando en este tema
  wc /etc/a* 2> /dev/null | sort -n > count
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++Comando TR+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Usaremos este comando para usos más avanzados como el redireccionamiento y los patrones de texto, lo que hace
+es reemplazar o eliminar caracteres quelee desde la entrada estandar. Ejemplo: vamos a sustiruir la letra "a" por la "e"
+
+comando: tr a e
+nos pedirá escribir una palabra y podremos escribir la palabra "casa"  y la consola nos imprimirá la palabra cese   
+salimos del comando con "control + c".
+
+
+
+ejemplo: si guardamos la palabra casa en un fichero y luego lo ejecutamos con el comando "tr" veremos las sustitucione que
+podemos hacer.
+
+echo casa > fichero.txt
+tr ac en < fichero.txt
+
+imprime: nese 
+
+
+como vemos la "a" la sustituye por "e" y la "c" la sustituye por "n"  y hay que tener mucho cuidado cuando
+quitamos carcateres de un archivo o podemos usar el tr y ponerleparametros y luego asignarle un archivo
+hay que ponerle una redireccion estandar ">" al archivo de texto en donde lo queremos ejecutar
+
+Rangos: podemos usar TR para poner rangos de letras 
+
+• RANGOS: caracter_inicio-caracter_final
+ a-z incluye todas las minúsculas
+ d-g incluye las letras defg
+
+• REPETICIONES: [caracter*numero]
+ [a*3] indica la cadena aaa
+
+• CARACTERES ESPECIALES
+
+\\ : Barra invertida.
+\a : Caracter audible (Campana/Bell).
+\b : Retroceso.
+\f : Salto de Pagina.
+\n : Nueva línea.
+\r : Retorno de carro.
+\t : Tabulador.
+\v : Tabulador vertical. 
+
+• CLASES: representan un conjunto predefinido de caracteres
+
+[:alnum:] : Las letras y Dígitos
+[:alpha:] : Letras
+[:blank:] : Espacios en Blanco
+[:cntrl:] : Caracteres de control
+[:space:] : Los Espacios en Blanco verticales y horizontales
+[:graph:] : Caracteres imprimibles, sin incluir el Espacio en Blanco
+[:print:] : Caracteres imprimibles, incluyendo el Espacio en Blanco
+[:digit:] : Dígitos
+[:lower:] : Letras minúsculas.
+[:upper:] : Letras mayúsculas.
+[:punct:] : Signos de puntuación.
+[:xdigit:] : Dígitos Hexadecimales.
+  
+
+Ejemplo usando clases:
+
+comando:echo "esto es una frase, con varias palabras por ejemplo 15" > fichero.txt
+comando para imprimir:tr [:digit:] X < fichero.txt
+
+imprime: esto e sua frase, co varias palabras por ejemplo XX
+
+
+Ejemplo usando clases:
+
+comando:echo "esto es una frase, con varias palabras por ejemplo 15" > fichero.txt
+comando para imprimir:tr [:alpha:] X < fichero.txt
+
+imprime: XXXX XX XXX XXXXX, XXX XXXXXX XXXXXXXX XXX XXXXXXX 15
+
+
+Ejemplo usando clases:
+
+comando:echo "esto es una frase, con varias palabras por ejemplo 15" > fichero.txt
+comando para imprimir:tr [:space:] - < fichero.txt
+
+imprime:esto-es-una-frase,-con-varias-palabras-por-ejemplo-15
+
+Opciones en "tr": -d le inndicamo que borre el cojunto de caracteres quele especificamos,
+-s elimina los caracteres repetidos en una palabra, -c se veran afectados todos los caracteres
+menos los que especificamos.
+
+
+Ejemplo:
+c
+resultado:
+-rwxrwxrwx   1    root    root    1.34M   jun 2    22:33    file.txt   
+
+
+si nosotros queremos ver columna por columna ponemos: 
+ls -lh . | cut-d" " -f4
+aqui decimos que queremos ver la columa 4 perooooo muchas veces en el nombre de usuarios
+tiene demasiados espacios y el cut no detecta correctamente el nombre, entoces usamos el 
+tr -s  y eliminamos losespacios repetidos y asi pueda funcionar correctamente el cut e
+imprimir correctamente la columna.
+
+ls -lh . | tr -s " " | cut-d" " -f4
+
+con este comando le decimsoq ue nos enliste en formato humano los archivos en e directorio actual
+que borre los espacios repetidos y que defina cada espacio como separacion de columnas y que al final
+nos uestre la columna 4 
+
+  
+ ejemplo:
+si queremoseliminar toda las vocales podemos usar el comando -d
+comando para imprimir: tr -d aeiou < file.txt  
+ eliminaremos todas las vocales de ese texto   
+
+ejemplo :
+si queremos pasar los caracteres de un texto de minuscula a mayuscula ponemos:
+comando para imprimir:tr [:lower:] [:upper:] < file.txt
+
+
+
+
+
+Sed
+
+es un editor de flujo de texto:
+• SINTAXIS: sed [-n] [-e'script'] [-f archivo] archivo1 archivo2
+• -n indica que se suprima la salida estándar.
+• -e indica que se ejecute el script que viene a continuación.
+Si no se emplea la opción -f se puede omitir -e.
+• -f indica que las órdenes se tomarán de un archivo
+• -r se utilizan expresiones regulares EXTENDIDAS
+
+• Comando de ejemplo:
+sed '2,5p' texto.txt
+
+• Sintaxis del script :
+     [ inicio_ubicacion [,fin_ubicacion]] instrucción [argumentos]
+ sed         '2,               5                p'      texto.txt
+
+con este comandoprimero ponemos "sed" luego el punto de inicio del comando en el documento que seria en la 
+linea 2 y terminaria en la linea 5 haciendo una accion "p" (Imprimir línea actual en salida estándar.)
+
+• UBICACIÓN (Si no es especifica se verán afectadas todas las lineas)
+Se puede indicar de dos formas
+
+1. Mediante números: Especificamos los números de linea de principio y fin.
+("$" significa la última línea)
+2. Mediante patrones de texto: son las líneas que cumplen con la expresión regular
+especificada /EXPRESIÓN/
+
+Utilizando cualquiera de estos métodos, se pueden aplicar rangos, indicando el inicio y
+fin separados por comas:
+
+COMANDO SED (ningna indicacion en sed se guarda en el archivo final, este comando solo nos sirve para
+visualizacion)
+
+‣ 1,5 => de la linea 1 a la 5
+‣ /pepe/,$ => desde linea la que contiene la
+palabra pepe hasta la última
+
+• i\ = Insertar línea antes de la línea actual.
+• a\ = Insertar línea después de la línea actual.
+• c\ = Sustituye la línea actual por la especificada a continuación.
+• d = Borrar línea actual.
+• p = Imprimir línea actual en salida estándar.
+• s = Sustituir cadena en línea actual.
+• ! = Aplicar instrucción a las líneas no seleccionadas por la condición.
+• q = Abandona el proceso cuando se alcanza la línea especificada.
+
+
+ejemplo:
+
+sed -e "/palabra_a_buscar/d" file.txt
+
+aqui buscamos una palabra y borramos la linea en donde se encuentre
+
+
+
+ejemplo:
+
+
+
+sed -e "/palabra_a_buscar/,10d" file.txt
+
+aqui buscamos una palabra ubicandolacomo una primera ubicacion y luego le decimos que la linea 10
+será la ultima ubicacion y que aplique el parametro "d" y esto borrará la linea en donde se encuentre
+la palabra buscar hasta la linea 10 del archivo file
+
+
+ejemplo:
+
+cat -n file.txt | sed -e "/palabra_a_buscar/,10d" file.txt
+
+aqui nos numera las lineas con el comando cat y luego por medio de una tuberia usamos el comando sed
+buscamos una palabra ubicandolacomo una primera ubicacion y luego le decimos que la linea 10
+será la ultima ubicacion y que aplique el parametro "d" y esto borrará la linea en donde se encuentre
+la palabra buscar hasta la linea 10 del archivo file
+
+ejemplo:
+
+sed -e "1a\HOLA" file.txt
+
+este ejmplo nos dice que la fila 1 será nuestro punto inicial y usara la instruccion "a" Insertar línea
+después de la línea actual,  entonces nos imprimirá la palabra "HOLA" en la segunda linea del archivo
+file.txt 
+
+ejemplo:
+
+sed -e "1i\HOLA" file.txt
+
+este ejmplo nos dice que la fila 1 será nuestro punto inicial y usara la instruccion "i" Insertar línea
+antes de la línea actual,  entonces nos imprimirá la palabra "HOLA" en la una linea antes dela
+linea en la que estamos convirtiendo asi nuestra linea 1 en la linea 2 e imprimiento la palabra hola
+en la linea 1 en el archivo file.txt 
+
+ejemplo:
+
+sed -e "1c\HOLA" file.txt
+
+este ejmplo nos dice que la fila 1 será nuestro punto inicial y usara la instruccion "c" reemplazando la linea
+indicada por la palabra "HOLA" en el archivo file.txt 
+
+ejemplo:
+
+sed -e "2p" file.txt
+
+este ejmplo nos dice que al principio del documento nos mostrará la fila 2 y despues empezara todo el texto del archivo
+file.txt 
+si queremos que solo nos muestre la linea seleccionada y omita la salida estándar (la vista de todo el documento)
+agregamos el paraetro "-n" al principio del comando. ejemplo:
+sed -n -e "2p" file.txt
+esto solo nos mostrara la fila 2 y la vista de todo el documento será omitida
+
+
+ejemplo:
+
+sed -n -e "1,3p" file.txt
+
+esto nos muestra unicamente las primeras tres lineas del documento
+
+
+ejemplo:
+
+sed -n -e "1,3!p" file.txt
+
+utilizando el parametro "!" nos muestra todo el documento unicamente sin las primeras tres lineas del documento
+
+
+ejemplo: 
+
+sed -e "5a\FRASE" -e "7i\FRASE" file.txt
+
+aqui llegamos a la quinta fila e insertamos la palabra "FRASE" despues de la quinta linea, dejando la palabra
+FRASE en la sexta fila, luego pasamos a la septima fila e insertamos la palabra "FRASE" una linea antes de la septima
+linea  
+
+
+ejemplo:
+
+sed -e "/Frisaba/q" -e "/y/c\VACIO" file.txt
+ 
+este comandova abuscar la palabra "Frisaba" por todo el documento y cuando la encuntre lo dejara de ejecutar
+(mostraralas lineas del documento hasta que encuentre la palabra indicada parará) luego 
+cada que encuentre la letra "y" usarael parametro "c" borrara el contenido de es linea y la sustituira por la palabra "VACIO"
+en el documento file.txt
+
+
+
+Nota: en "sed" podemos usar las "Clases" que ocupamos en el comando "tr"
+
+ejemplo: 
+
+sed -e "s/[[:upper:]]/X/" file.txt
+
+aqui le decimos quecon el parametro "s" nos sustituya un caracter  especificado, pero solo nos sustituira
+este caracter si es el primero de la linea 
+en este caso le decimos que todas las letras mayusculas utilizando el comando [:upper:] las cambien a X en
+el documento file.txt 
+
+ejemplo: 
+
+sed -e "s/[[:upper:]]/X/g" file.txt
+
+aqui le decimos quecon el parametro "s" nos sustituya un caracter  especificado, en este caso agregando la "g"
+nos sustituira todos los caracteres de cada inea que cumpla con la especificacion
+en este caso le decimos que todas las letras mayusculas utilizando el comando [:upper:] las cambien a X en
+el documento file.txt 
+
+ejemplo: 
+
+sed -i -e "s/[[:upper:]]/X/g" file.txt
+
+aqui le decimos que todos las ordenes de este comando set sean guardadas en el archivo original con el parámetro "-i"
+con el parametro "s" nos sustituya un caracter  especificado, en este caso agregando la "g"
+nos sustituira todos los caracteres de cada inea que cumpla con la especificacion
+en este caso le decimos que todas las letras mayusculas utilizando el comando [:upper:] las cambien a X en
+el documento file.txt 
