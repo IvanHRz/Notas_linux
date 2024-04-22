@@ -1,3 +1,24 @@
+Prompt
+El prompt es la linea de nombre de usuario en la shell
+nombre de usuario, arroba, nombre de maquina, dos puntos y el directorio actual en el que nos encontramos
+----------------------------------------------------------------------------------------------------------------------------
+4 Tipos de comandos
+lo podemos averiguar con el comando type
+
+1.- Comando implementados en la propia shell - Son comandos implementados en el codigo de la shell, ya vienen por default
+si pulsamos el comando type y luego el comando del que tengamos duda y nos aparece el siguiente mensaje "type is a shell builtin"
+entonces podemos asumir que el comando viene implementado en el codigo de la shell.
+
+2.- Comandos que no son implementados en la shell, esta implementado por medio de ficheros y tienen una ruta especifica -
+es un comando ejecutable externo a la shell y simplemente la shell lo invoca, si ponemos tpe y por ejemplo "cp" nos arrojara
+lo siguientye "cp is /usr/bin/cp"
+
+3.- Shell funtions que no son mas que utilidades escritas con un lenguaje de programa con que se denomina shell script
+el cual es un lenguage propio de la shell.
+
+4.- Alias - referencia (short cut) de comandos que vienen establecidos o que nosotros podemos crar para simplificar comandsos mas
+extensos como ls
+---------------------------------------------------------------------------------------------------------------------------
 para usar git en linux instalamos meld y y gitg 
 +++++++++++++++++++++++++++++++++++++++++++configurar herrmientas+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 git config --global user.name "nombre_del_usuario"
@@ -27,7 +48,7 @@ tar -xf archive.tar.gz
 ++++++++++++++++++++++++++++++++extraer archivo .rar+++++++++++++++++++++++++++++++++++++++++++++++
 unrar x nobre_del_rar. rar
 unrar x nombre_del_rar. rar ruta donde lo queramos descomprimir
-sss
+sssls 
 Comandos:
 
 para ver la ruta de una carpeta en debian poner control + l+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -348,7 +369,9 @@ ejemplo: find .   -iname "*i*" -type f
          considerar la diferencia entre minusculas y mayusculas al buscar el archivo y por ultimo especificamos 
          un tipo a buscar , que en este caso es que tenga una letra "i" en cualquier parte del nombre y de tipo file 
         (folder).  
-         
+ejemplo: find / -name "*.txt"
+         En este ejemplo usamos un slahs "/" esto le indicara al comando que debe buscar cualquier archivo definido a
+         buscar en el sistema independientementre de la carpeta.       
  
 Más opciones:    
 -size +/-<n> permite indicar el tamaño máximo y/o mínimo de los ficheros a buscar. Por defecto el tamaño se expresa en
@@ -409,13 +432,29 @@ EJEMPLO: find -maxdepth 4 -iname "*a*"
           sin importar si es mayuscula o minuscula 
 
 
+                                                     exec 
+
+
 opcion ejecutar comandos en los elementos de fine:
--exec <comando>;  permite definir un comando a ejecutarse para cada resultado de la busqueda. La cadena {} se sustituye
-por el nombre de los ficheros encotrados. El caracter ; permite indicar la finalización del comando. (Tanto {} como ; tienen
+-exec <comando>;es una tuberia exclusiva del find permite definir un comando a ejecutarse para cada
+resultado de la busqueda. La cadena {} se sustituye por el nombre de los ficheros encotrados.
+El caracter ; permite indicar la finalización del comando. (Tanto {} como ; tienen
 que entre comillas o entre contrabarras para evitar que sea sustituidopor el shell)
 
+todos los archivos encontrados por el find quedaran guardados en las llaves, al iniciar el exec 
+pondremos la accion que queremos hacer despues irtan las llaves, con esto indicamos
+que la accion que queremos afectara a todo lo que se encuentre en las llaves y despues ponemos los dos puntos
+que indicara que termionamos el comando.
+ejemplo:
+find . -name "pescando*" -exec mv "{}" lubina.jpg ";"
+aqui decimos que apartir de la carpeta actual nos busque el archivo "pescando*" y despues de encontrarlo
+con exec realice otra accion en este caso cambiarle el nombre con el comando "mv" diciendole
+que el archivo encontrado en el find y que esta almacenado le cambiaremos el nombre y despues con los dos puntos 
+indicaremos que ya acabamos.  
+
 ejemplo: 
-find /etc/ -iname "*.conf" -size -1M -exec cp "{}" /home/copias/ ";"
+find /etc/ -iname "*.conf" -scd
+ize -1M -exec cp "{}" /home/copias/ ";"
 con este comando buscamos en la carpeta etc un archivo que pese menos de un mega, sin importar si su nombre tiene
 mayusculas o minúsculas, detipo .conf, después ocuparemos el comando exec para mover el o los archivos en la 
 ruta especificada (el o los archivos seran represntados por las llaves) y al final establecemos que hemos
@@ -460,7 +499,7 @@ de lineas en el archivo
 
 more: este comando Nos divide la visualizacion de un archivo por pantallas, como si fuera un libro, con la 
 tecla espaciadora nos va pasando las pantallas asta llegar al final del documento, con la tecla "q" salimos del modo 
-more y con la tecla h nos despliega un menu que    
+more y con la tecla h nos despliega un menu que nos muestra los comandos dentro de more 1010  20   
 
 
 less: de principo hace lo mismo que more y con las mismas teclas pero te limpia la pantalla al salir y esta optimizado 
@@ -477,6 +516,11 @@ aqui le decimos que nos busque las primeras 5 lineas de todos los ficheros que t
 
 
 tail: nos sirve para ver las ultimas lineas de un archivo,por defecto son 10  
+ejemplo, si queremos ver las ultimas 20 lineas de un archivo:
+tail -n20 /direccion
+
+
+
 
 cut 
 corta una parte especificada de una linea, mostrando solo una parte de la linea, usa el parametro "-c"
@@ -531,7 +575,7 @@ este comando nos sirve para mosrar las lineas que cumplen un patrón. se puede
 usar para palabras o expresiones regulares, por si solo solo buscara que haya coincidencia
 con la letra o palabra buscar pero eso nos puede dejar muchas opciones para eso necesitamos 
 parametros de busqueda: La opcion "-v" muestra las que no
-coinciden con el patron, "-l" no nos indica la liea en donde esta la palabra buscada, solo indica
+coinciden con el patron, "-l" no nos indica la linea en donde esta la palabra buscada, solo indica
 el nombre del fichero donde ha encontrado 
 alguna coincidencia, "-w" el patron tiene que ser una palabra independiente osea 
 que la palabra o letra tiene que ser especifica y no forma parte de otra palabra o 
@@ -585,6 +629,7 @@ conocerlo porque está en TODAS las distribuciones y modos de arranque.
 Actualmente es más común usar Vim (vi mejorado) que el Vi original.
 Tiene tres modos de funcionamiento:
 • MODO COMANDO
+cuando entramos a modo comando no hay necesidad de poner ":" antes de un comandoso
 Se empieza en este modo, siempre podemos volver a él pulsando la tecla ESC.
 Podemos realizar acciones pulsando una o varias teclas
 Acciones en el modo comandos:
@@ -666,17 +711,17 @@ al final volvemos a poner "rev" y nos pone el directorio de forma completamente 
 
 
 ++++++++++++++++++++++++++++++++++++++++redirecciones +++++++++++++++++++++++++++++++++++++++++++++++++++
-podria decirse que hay dor direcciones disponibles, la primera es hacer que un comando de una accion correcta 
+podria decirse que hay dos direcciones disponibles, la primera es hacer que un comando de una accion correcta 
 y se muestre por pantalla y la otra que el usuario escriba un comando que   no se vea en panatalla pero 
 genere una accion en un archivo y en este ultima se deriva en dos partes, la primera es cuando se cumple
 la accion sin ningun error y la segunda cuando se genera un error, a estas seles asignaran respectivamente 
 el nunmero 1 y 2. La segunda nos sirve especialmente para cuando registramos un error en n comando 
-y la consola nosmuestra todo lo que esta mal y este contenido lo podemos almacenar en un archivo usando el numero
+y la consola nos muestra todo lo que esta mal y este contenido lo podemos almacenar en un archivo usando el numero
 2 antes de la direccion: 2>    y si queremos guardar los datos expresados por consola
 tamto de 1 y 2 ponemos:  &>  
  
 
-Usando un solo > si el fichero existe, lo sobrescribe
+• Usando un solo > si el fichero existe, lo sobrescribe, si no existe lo crea
 • Usando dos >> si existe añade el texto al final
 • Los mensajes de error se pueden redirigir de forma independiente usando 2> o 2>>
 • Para redirigir todos los mensajes se usa &> o &>>
@@ -795,7 +840,7 @@ comando para imprimir:tr [:space:] - < fichero.txt
 
 imprime:esto-es-una-frase,-con-varias-palabras-por-ejemplo-15
 
-Opciones en "tr": -d le inndicamo que borre el cojunto de caracteres quele especificamos,
+Opciones en "tr": -d le inndicamo que borre el cojunto de caracteres quele especificamos,+++++++++++++++++++++++++++++++++++++
 -s elimina los caracteres repetidos en una palabra, -c se veran afectados todos los caracteres
 menos los que especificamos.
 
@@ -895,7 +940,7 @@ ejemplo:
 
 sed -e "/palabra_a_buscar/,10d" file.txt
 
-aqui buscamos una palabra ubicandolacomo una primera ubicacion y luego le decimos que la linea 10
+aqui buscamos una palabra ubicandola como una primera ubicacion y luego le decimos que la linea 10
 será la ultima ubicacion y que aplique el parametro "d" y esto borrará la linea en donde se encuentre
 la palabra buscar hasta la linea 10 del archivo file
 
@@ -994,7 +1039,7 @@ ejemplo:
 
 sed -e "s/[[:upper:]]/X/g" file.txt
 
-aqui le decimos quecon el parametro "s" nos sustituya un caracter  especificado, en este caso agregando la "g"
+aqui le decimos que con el parametro "s" nos sustituya un caracter  especificado, en este caso agregando la "g"
 nos sustituira todos los caracteres de cada inea que cumpla con la especificacion
 en este caso le decimos que todas las letras mayusculas utilizando el comando [:upper:] las cambien a X en
 el documento file.txt 
@@ -1008,3 +1053,413 @@ con el parametro "s" nos sustituya un caracter  especificado, en este caso agreg
 nos sustituira todos los caracteres de cada inea que cumpla con la especificacion
 en este caso le decimos que todas las letras mayusculas utilizando el comando [:upper:] las cambien a X en
 el documento file.txt 
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++Expresiones regulares ++++++++++++++++++++++++++++++++++++++++++++++
+• CARACTERES ESPECIALES
+‣ ^ (acento circunflejo): Inicio de linea esto nos ayuda a buscar palabras que empiecen forsozamente con la letra especificada
+‣ $: Fin de línea
+‣ . :cualquier carácter. Si queremos quitar el significado especial tendremos que
+poner la contrabarra \ delante
+• CORCHETES []
+‣ Se usan para indicar que en una posición determinada pueden aparecer un
+conjunto determinado de caracteres. Por ejemplo [aeiou] significa donde se
+encuentre puede haber cualquier vocal minúscula.
+‣ Ejemplo: c[aei]s[ao] =>
+
+aqui le decimos que busque palabras que forzosamente comiencen con la letra "c" utilizando "^", que opcional mente
+el siguiente carcater sea una a, e ó i despues que la siguiente linea forsozamente sea una "s" y la última linea
+se opcionalmente una a ú o y utilizamos $. 
+grep ^c[aei]s[ao]$ /usr/share/dict/spanish 
+
+podriamos tener las siguientes opciones pero solo algunas cumplen la condicion 
+casa...bien 
+cese...mal
+caso...bien 
+ceso...bien
+casi...mal
+
+
+
+
+ejemplo 1:
+grep ^a /usr/share/dict/spanish | tail
+
+aqui le decimos que nos busque las ultimas 10 palabras de un diccionario encontrado en esa direccion
+que comiencen con la letra "a"
+
+
+
+
+ejemplo 2:
+grep o$ /usr/share/dict/spanish | tail
+
+aqui le decimos que nos busque las ultimas 10 palabras de un diccionario encontrado en esa direccion
+que terminen con la letra "o"
+
+
+
+• CORCHETES
+‣ Exclusión [^]: Se usa para indicar que en una posición puede encontrarse
+cualquier carácter EXCEPTO los que se encuentran entre corchetes.
+‣ Ejemplo: c[^aei]s[^ao] => 
+casa...mal
+cese...mal
+cose...bien
+cusi...bien
+coso...mal
+‣ Rangos [-]: Se usa para indicar todos los valores intermedios entre un inicio y un
+final. Tienen que ser datos con una ordenación conocida, por ejemplo números o
+letras:
+‣ Ejemplo: c[a-d]s[0-5] sería igual a c[abcd]s[012345]
+Las expresiones se pueden mezclar, por ejemplo: [3-8[:upper:]mty] en esta posición
+se admiten números del 3 al 8 ó cualquier mayúscula ó las minúsculas m, t o y.
+
+
+ejemplo1:
+grep "c[^aei]s[^ao]" /usar/share/dict/spanish | tail
+
+con esto le decimos que busque las ultimas 10 palabras que contengan la letra "c" (no forzosamente que empiecen con la letra c)
+y despues la vocal que siga no sea ni a,e ó i, que despues siga forzosamente la letra "s" y al final que no siga 
+la vocal a ú o  
+
+
+ejemplo2:
+grep "^m[^i-o]s[^f-z].$" /usar/share/dict/spanish
+
+aqui le dcimos que nos busque palabras que comiencen forsozamente con "m" pero que no tengan ninguna vocal en el
+rango de i-o luego que siga forzosamente con la letra "s" y la siguiente letra que no sea ninguna en el rango de 
+f-z y despues de esa letra con el "." indicamos que lo que siga sea cual quier otro caracter, al final debe ser 
+una palabra con 5 caracteres. 
+
+
+
+
+• REPETICIONES (Regex Extendidas)
+EXPRESIONES REGULARES
+X* El asterisco concuerda con cero o más repeticiones de la expresión regular que le precede (X)
+X? El carácter interrogación concuerda con cero o una aparición de la expresión regular que le
+precede (X)
+X+ El signo más concuerda con una o más repeticiones de la expresión regular que le precede (X)
+   esto dice que el valor(X) debe estar obligatoriamente
+X{n} Concuerda con n repeticiones exactas de X
+X{n,} Concuerda con n o más repeticiones de X, decimos que debe haber un número mínimo de repeticiones
+X{,n} Concuerda con cero o a lo sumo n repeticiones de X, decimos que debe de haber un número máximo de repeticiones
+X{n,m} Concuerda con al menos n repeticiones de X, o como mucho m repeticiones. decimos que debe tener un mínimo
+y un máximo de repeticiones 
+
+
+ejemplo1:
+grep --color -E "^[h-q]{8}$" /usar/share/dict/spanish
+
+con este comando le decimos con grep que busque palabras especificas, con "--color" que al encontrar la plabra
+nos coloree las especificaciones que le estamos pidiendo en este caso como le pasamos un parametro ^ al principio de 
+las especificaciones y $ al final entonces entendemos que nos coloreará toda la palabra ya que toda la palabra 
+tiene que cumplir con especificaciones que en este caso es que sea una palabra formada con las letras del rango de h a q
+y le estamos diciendo que esa regle se repita 8 veces osea que la palabra tenga 8 caracteres usando el parametro
+de repeticion extendida (por eso usamos el parametro -E al principio)
+ 
+ejemplo2:
+grep --color -E "^[h-q]{8,}$" /usar/share/dict/spanish
+la misma explicacion anterior pero aqui decimos que minimamente sean 8 caracteres
+
+
+ejemplo3:
+grep --color -E "^[h-q]{,8}$" /usar/share/dict/spanish
+la misma explicacion anterior pero aqui decimos que máximo sean 8 caracteres
+
+
+ejemplo4:
+grep --color -E "^[h-q]{4,6}$" /usar/share/dict/spanish
+la misma explicacion anterior pero aqui decimos que el número de caracteres sean del rango de 4 a 6 caracteres
+
+
+
+
+• ALTERNATIVA
+‣ Se puede usar el operador lógico OR ( | ) para dar por buena cualquiera de las
+dos expresiones regulares conectadas.
+‣ Ejemplo: ^a.*t$|^e.*x$ => las que empiecen por a y acaben en t o las que
+empiecen por e y acaben por x
+•AGRUPACIÓN
+‣ Se puede usar paréntesis para agrupar expresiones regulares o especificar a qué
+debe afectar un determinado carácter especial.
+‣ Ejemplo: (c[aeiou]){2} => se tiene que repetir una c seguida de una vocal 2
+veces
+
+• ABREVIATURAS
+‣ \w => cualquier carácter alfanumérico y el guión bajo (_)
+‣ \W => lo contrario de \w, signos de puntuación, espacios, etc..
+• LÍMITES DE PALABRA
+‣ No representan caracteres, si no límites, estarían entre dos caracteres,
+normalmente entre un alfanumérico y uno de puntuación o separadores.
+\< Inicio de palabra
+\> Fin de palabra
+\b Límite de palabra (inicio o fin)
+\B Lo contrario a \b. 
+
+
+• REFERENCIAS: Podemos usar \n siendo n un número entre 1 y 9 para hacer referencia
+a una agrupación dentro de la propia expresión regular.
+‣ Ejemplo: ([aei])s\1 significa que el primer carácter puede ser a, e o i, luego
+una s y el \1 haría referencia que tiene que haber lo mismo que haya en el primer
+carácter.
+‣ Ejemplo ([[:digit:]])([[:digit:]])0\2\1 expresa que tiene que haber dos
+numeres seguidos de un 0 y después el mismo número que esté en la segunda
+posición, seguido del mismo número que esté en la primera. Es decir, capicúa,
+como 13031, 91019
+
+
+
+
++++++++++++++++++++++++++++++++++++++Shell Sript+++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+NUESTRO PRIMER SCRIPT
+INTRODUCCIÓN
+
+#!/bin/bash
+#Este script imprime la frase HOLA MUNDO por pantalla
+echo HOLA MUNDO
+
+
+‣ La primera línea indica la ruta del intérprete, que será el programa encargado de ejecutar las
+instrucciones del script. Se debe empezar la linea con los caracteres #!
+
+‣ La segunda es un comentario. Estas lineas son ignoradas por el intérprete. Sirven para hacer aclaraciones
+que el programador considere oportunas.
+Empiezan por el carácter #
+
+‣ Podemos utilizar cualquier editor de texto para crear el fichero de script. Se suele usar la extensión .sh
+
+‣ Una vez guardado, tenemos que ponerle permisos de ejecución: chmod +x script.sh
+
+• PARÁMETROS
+▸ Un script puede recibir información mediante parámetros, que serán cadenas de texto que
+pondremos después del nombre del script
+▸ Estarán separado por espacios
+▸ Dentro del script podremos acceder a ellos mediante variables predefinidas del sistema:
+ENTRADA Y SALIDA DE INFORMACIÓN
+✓$n => la información de un parámetro en concreto, siendo n un número del parámetro
+✓$* => todos los parámetros. Se presentan en una sola cadena de caracteres
+✓$@ => todos los parámetros. Es una lista con un elemento por cada parámetro recibido
+✓$# => el número de parámetros con los que se ha invocado el script. Será una cifra 
+
+ejemplo1:
+nano hola .sh 
+
+aqui creaos un archivo ejecutable en el que pondremos 
+#!/bin/bash
+#Este script imprime la frase HOLA MUNDO por pantalla
+echo HOLA MUNDO
+
+
+para ver el resultado tendrmos que salir del ejecutable y darle pérmiso de administrador para ejecutar 
+el archivo, eso lo hacemos con: chmod + x hola.sh
+y lo ejecutamos poniendo "./"  al principio del archivo.
+
+
+
+
+
+ejemplo2:
+podemos poner: head -n1 hola.sh > p1.sh
+aqui le decimos que del archivo anterior tome la linea 1 y que la guarde en un nuevo archivo al que 
+llamaremos p1.sh
+
+entramos al ejecuable con: nano p1.sh
+despues escribimos unas cadenas de carcateres y parámetros:
+#!/bin/bash 
+
+echo El primer parámetro es: $1
+echo El número de parámetros han sido $#
+echo Todos los parámetros son: $*
+
+
+salimos y ejecutamos otrogando permiso de ejecucion con: chmod +x p1.sh
+ejecutamos con: ./p1.sh
+
+pero tambien ingresaremos tras parámetros de modo que quedaría asi:
+./p1.sh parametro1 parametro2 parametro3 
+ nos arrojara como resultado: 
+
+El primer parámetro es: param1
+El número de parámetros han sido: 3
+Todos los parámetros son: parametro1 parametro2 parametro3
+  
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++Variables+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+    
+• VARIABLES
+▸ Sirven para guardar información y poder acceder a ella posteriormente
+▸ Para referirnos a ellas utilizaremos un identificador que estará compuesto por
+caracteres alfa numéricos o guión bajo, pero no pueden empezar por un número
+▸ Se distingue entre mayúsculas y minúsculas. $VAR no es igual que $var
+ENTRADA Y SALIDA DE INFORMACIÓN
+• LECTURA / ESCRITURA DE VARIABLES
+▸ Para guardar datos en una variable simplemente tendremos que asignarle un valor, utilizando
+su identificador SIN el símbolo del dólar:
+ variable=“Hola” (es importante que todo esté junto, sin espacios)
+▸ Y para acceder a su contenido usaremos el símbolo del dólar seguido de su identificador:
+ echo $variable o llaves: echo ${variable}
+
+
+
+ejemplo1:
+podemos poner: head -n1 hola.sh > p1.sh
+aqui le decimos que del archivo anterior tome la linea 1 y que la guarde en un nuevo archivo al que 
+llamaremos p1.sh
+
+entramos al ejecuable con: nano p1.sh
+despues escribimos unas cadenas de carcateres y parámetros:
+#!/bin/bash 
+v1="Hola"
+echo $v1 mundo
+
+
+esto al ejecutarlo nos lanzará en pantalla un "hola mundo"
+
+
+
+
+
+
+• MÁS VARIABLES PREDEFINIDAS
+▸ Además de las variables para consultar los parámetros, disponemos de algunas similares pero
+que contiene otra tipo de información:
+ENTRADA Y SALIDA DE INFORMACIÓN
+✓$0 => El nombre del script
+✓$$ => PID del proceso que se le ha asignado al script en ejecución
+✓$? => Resultado devuelto por el último proceso ejecutado.
+• VARIABLES DE ENTORNO
+▸ Son variables que están definidas en el sistema y que podemos usar si las necesitamos.
+▸ Son usadas por el propio sistema para su funcionamiento, por ejemplo $PATH
+▸ Podemos ver las disponibles con el comando "printenv"
+
+
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++Arrays +++++++++++++++++++++++++++++
+
+DEFINICIÓN
+miarray=(dato1 dato2 dato3)
+ENTRADA Y SALIDA DE INFORMACIÓN
+• LECTURA
+${miarray[indice]} => echo ${miarray[0]} ${miarray[1]} ${miarray[-1]}
+• OTROS MÉTODOS
+▸ Mostrar todos los elementos: ${miarray[*]} o ${miarray[@]}
+▸ Mostrar la cantidad de elementos: ${#miarray[@]}
+▸ Mostrar todos los indices: ${!miarray[@]}
+▸ Eliminar una posición: unset miarray[indice]
+
+
+ejemplo1:
+
+mia=(p1 p2 p3)
+echo ${mia[0]}
+echo ${mia[1]}
+echo ${mia[2]}
+echo ${mia[-1]}
+echo ${mia[*]}
+echo la cantidad de elementos disponibles son ${#mia[*]}
+echo la cantidad de indices disponibles son ${!mia[*]}
+unset mia[1]
+echo DESPUES DE BORRAR..
+echo nos quedan los elementos:  ${mia[*]}
+echo la cantidad de elementos disponibles son ${#mia[*]}
+echo la cantidad de indices disponibles son ${!mia[*]}
+
+
+ejecucion:
+p1
+p2
+p3
+p3
+p1 p2 p3
+la cantidad de elementos disponibles son: 3
+la cantidad de indices disponibles son: 0 1 2 
+DESPUES DE BORRAR..
+nos quedan los elementos: p1 p3
+la cantidad de elementos disponibles son: 2
+la cantidad de indices disponibles son: 0 2
+
+
+------------------------------------------pedir datos al usuario--------------------------------
+usamos read 
+ejemplo:1
+echo ingresa una palabra:
+read variable1
+echo tu palabra es:$variable1  
+
+se ejecuta:
+
+ingresa una palabra:
+(tabulador en espera que ingreses una palabra)
+echo tu palabra es:$variable1
+
+podemos evitar el salo de linea en automatico que produce el tabulador al querer recibir un dato por el read 
+poniendo -n al principio del echo que anteceda al read. 
+
+ejemplo2:
+echo -n ingresa una palabra:
+read variable1
+echo tu palabra es:$variable1  
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++Operaciones aritmeticas ++++++++++++++++++++++++++++++++++++++++++
+Operaciones aritméticas
+OPERACIONES ARITMÉTICAS Y LÓGICAS
++ Suma
+- Resta
+* Multiplicación
+/ División
+% Resto de la División
+
+Para que se ejecute la operación tendremos que ponerla dentro de $(( ))
+echo 1+1 => sacará por pantalla 1+1
+echo $((1+1)) => sacará por pantalla 2
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++Condicionales++++++++++++++++++++++++++++++++++++++++++
+• Operaciones condicionales
+‣ Su objetivo es comprobar si una expresión es verdadera o falsa.
+‣ Realizan comparaciones o comprueban si se cumplen condiciones.
+‣ Utilizamos el comando test. Se puede poner de dos formas
+ test expresión o [ expresión ]
+Ejemplos:
+Si queremos comparar si un numero es mayor a otro ponemos: 
+‣ test 10 -gt 20           ó            [ 10 -gt 20 ]
+´i queremoscomparar dos cadenas de texto ponemos:
+‣ test ‘hola’ = ‘holita’            ó             [ ‘hola’ = ‘holita’ ]
+comprobamos si una ruta es un directorio:
+‣ test -d /etc/                   ó             [ -d /etc/ ]
+
+*Comparación de números
+
+SINTAXIS                         DESCRIPCIÓN
+ENTERO1 -eq ENTERO2      ENTERO1 es igual que ENTERO2
+ENTERO1 -ge ENTERO2      ENTERO1 es mayor o igual que ENTERO2
+ENTERO1 -gt ENTERO2      ENTERO1 es mayor que ENTERO2
+ENTERO1 -le ENTERO2      ENTERO1 es menor que o igual que ENTERO2
+ENTERO1 -lt ENTERO2      ENTERO1 es menor que ENTERO2
+ENTERO1 -ne ENTERO2      ENTERO1 no es igual que ENTERO2
+
+• Sentencia condicional IF
+‣ Ejecuta una o varias instrucciones sólo si se cumple una condición
+‣ Sintaxis:
+if CONDICION; then
+   comandos
+fi
+
+‣ Ejemplo:
+
+if [ $v1 -gt $v2 ]; then
+ echo “La variable v1 es mayor que v2”
+fi
+
+
+fi solo nos sirve para cerrar el condicional es como si fuera la ultima llave 
+si programaramos en c++ o python.
